@@ -1,6 +1,5 @@
 import React from 'react'
 import EbookCard from '../EbookCard'
-import { ebooks } from '@/data/ebooks'
 import { Ebook } from '@/types/types'
 interface props{
   title: string,

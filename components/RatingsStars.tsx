@@ -1,5 +1,6 @@
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
+
 interface props{
     rating: number;
 }

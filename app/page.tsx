@@ -1,7 +1,4 @@
-import Footer from "@/components/Footer";
-import Hero from "@/components/HomePage/Hero";
 import HeroSection from "@/components/HomePage/HeroSection";
-import MostPopular from "@/components/HomePage/EbookCardSection";
 import EbookCardSection from "@/components/HomePage/EbookCardSection";
 import { ebooks } from "@/data/ebooks";
 
