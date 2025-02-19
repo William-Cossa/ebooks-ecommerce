@@ -8,7 +8,7 @@ import Image from "next/image";
 import heroImage from '@/public/images/book.jpg'
 import heroImage2 from '@/public/images/hero.jpg'
 import Link from "next/link";
-
+  
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
