@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { Ebook } from '@/types/types';
 import Image from 'next/image';
-import { StarIcon } from 'lucide-react';
 import { Button } from './ui/button';
 import Link from 'next/link';
 import { RatingStars } from './RatingsStars';
