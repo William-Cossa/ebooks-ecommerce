@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 
-import { Book , Download , BookOpen  } from "lucide-react";
+import { Book  , BookOpen  } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import Image from "next/image";
