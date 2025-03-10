@@ -3,7 +3,9 @@ export interface Ebook {
     title: string,
     authors: string[],
     coverImage: string,
+    categories: string[];
     price: number,
     rating: number,
     description?: string
+    pages?: number
 }
