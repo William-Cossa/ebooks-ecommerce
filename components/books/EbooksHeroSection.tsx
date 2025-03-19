@@ -33,8 +33,7 @@ export const EbooksHeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               Explore nossa coleção de livros digitais. Leia clássicos da
-              literatura e novas obras em qualquer dispositivo, sem necessidade
-              de cadastro.
+              literatura e novas obras em qualquer dispositivo.
             </motion.p>
 
             <motion.div
@@ -47,7 +46,7 @@ export const EbooksHeroSection: React.FC = () => {
                 href="/books"
                 className="bg-white text-indigo-900 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition duration-300"
               >
-                Explorar Catálogo
+                Explorar Livros
               </Link>
               <Link
                 href="/books"
