@@ -347,7 +347,7 @@ export const ebooks = [
   {
     id: 1,
     title: "O Poder do Hábito",
-    authors: ["Charles Duhigg"],
+    authors: ["Charles Duhigg", "William Cossa", "Cossa William"],
     categories: ["Autoajuda", "Psicologia", "Chatice", "Psicologia", "Chatice"],
     coverImage: "https://images.unsplash.com/photo-1512820790803-83ca734da794",
     price: 29.99,

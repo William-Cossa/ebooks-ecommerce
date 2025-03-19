@@ -29,15 +29,17 @@ function EbookCard({ ebooks }: props) {
           className="rounded-t-lg h-60 object-cover"
         />
       </CardHeader>
-      <CardContent className="pt-4 h-40 flex flex-col justify-between gap-1">
+      <CardContent className="pt-4 h-28 flex flex-col justify-center gap-1">
         <CardTitle>{ebooks?.title}</CardTitle>
-        <div>
-          <span className="font-semibold text-muted-foreground">Autores: </span>
-          {ebooks?.authors.join(", ")}
+        <div className="h-12  flex items-center ">
+          <span className="py-4 font-semibold text-muted-foreground ">
+            Autores:{" "}
+            <span className="text-slate-800">{ebooks?.authors.join(", ")}</span>
+          </span>
         </div>
-        <CardDescription>{ebooks?.description}</CardDescription>
+        {/* <CardDescription>{ebooks?.description}</CardDescription> */}
       </CardContent>
-      <CardFooter className="flex flex-col py-4">
+      <CardFooter className="flex flex-col -mt-4">
         <div className="flex justify-between items-center w-full">
           <span className="font-bold text-primary text-lg">
             {(ebooks.price * 15).toFixed(2)} MZN
@@ -46,10 +48,11 @@ function EbookCard({ ebooks }: props) {
           <RatingStars rating={ebooks.rating} />
         </div>
         <div></div>
-        <span className="self-start text-sm text-muted-foreground">
-          {" "}
-          Categoria:
-        </span>
+        <p className="w-full flex justify-between text-sm text-muted-foreground">
+          <span>Categoria:</span>
+          {/* <span>{ebooks.pages} pag.</span> */}
+        </p>
+
         <div className="w-full justify-start gap-2">
           {ebooks.categories.slice(0, 3).map((category) => (
             <Badge key={Math.random()} className="text-xs mr-2">
