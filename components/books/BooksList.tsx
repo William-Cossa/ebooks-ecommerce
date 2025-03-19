@@ -1,18 +1,15 @@
 import getAllBooks from "@/lib/actions/books-actions";
 import EbookCardSection from "../HomePage/EbookCardSection";
-import { searchParamsProps } from "@/types/types";
 
-async function BooksList(searchParams: any) {
-  const categoria = searchParams?.categoria;
+async function BooksList({ searchParams }: any) {
+  const categoria = searchParams.categoria;
   console.log("Categoria", categoria);
-  const books = await getAllBooks();
-  // const filteredBooks = selectedCategories.length
-  // ? books.data?.filter((book) =>
-  //     book.categories.some((cat) => selectedCategories.includes(cat))
-  //   )
-  // : books.data;
+  const { books } = await getAllBooks();
+  const filteredBooks = categoria
+    ? books?.filter((book) => book.categories.includes(categoria))
+    : books;
 
-  return <EbookCardSection content={books.data!} />;
+  return <EbookCardSection content={filteredBooks!} />;
 }
 
 export default BooksList;

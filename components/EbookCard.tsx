@@ -19,7 +19,7 @@ interface props {
 }
 function EbookCard({ ebooks }: props) {
   return (
-    <Card className="rounded-lg ">
+    <Card className="rounded-lg lg  :max-w-80 2xl:max-w-none">
       <CardHeader className="p-0 rounded-lg ">
         <Image
           src={ebooks.coverImage}

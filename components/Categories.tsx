@@ -30,11 +30,11 @@ const categorias = [
 ];
 
 export default function Categories() {
-  const params = useSearchParams();
-  const active = params.get("categoria") || "Todos";
+  const searchParams = useSearchParams();
+  const active = searchParams.get("categoria") || "Todos";
 
   const toogleQuery = (key: string, value: string) => {
-    const query = Object.fromEntries(params);
+    const query = Object.fromEntries(searchParams);
     if (query[key] === value) {
       delete query[key];
     } else {
@@ -47,7 +47,7 @@ export default function Categories() {
   };
 
   const toogleMultipleQuery = (key: string, value: string) => {
-    const query = Object.fromEntries(params);
+    const query = Object.fromEntries(searchParams);
     let values = query[key] ? query[key].split(",") : [];
 
     if (values.includes(value)) {
@@ -65,8 +65,18 @@ export default function Categories() {
     console.log(query);
     return query;
   };
+
+  function handleCategoria(value: string) {
+    const sp = new URLSearchParams(searchParams);
+    if (value.trim() === "") {
+      sp.delete("category");
+    } else {
+      sp.set("category", value);
+    }
+    // router.push(`${pathname}?${sp.toString()}`,{scroll:false});
+  }
   return (
-    <div className="p-4">
+    <div>
       <h2 className="text-xl font-semibold mb-4">Categorias de Livros</h2>
       <div className="flex flex-wrap gap-2">
         {categorias.map((categoria, index) => (
