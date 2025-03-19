@@ -6,6 +6,7 @@ import { ReactEventHandler } from "react";
 import Link from "next/link";
 
 const categorias = [
+  { id: 0, nome: "Todos" },
   { id: 1, nome: "Ficção" },
   { id: 2, nome: "Mistério" },
   { id: 3, nome: "História" },
@@ -30,7 +31,7 @@ const categorias = [
 
 export default function Categories() {
   const params = useSearchParams();
-  const active = params.get("categoria") || "";
+  const active = params.get("categoria") || "Todos";
 
   const toogleQuery = (key: string, value: string) => {
     const query = Object.fromEntries(params);
@@ -38,6 +39,9 @@ export default function Categories() {
       delete query[key];
     } else {
       query[key] = value;
+    }
+    if (query[key] === "Todos") {
+      delete query[key];
     }
     return query;
   };
@@ -70,7 +74,7 @@ export default function Categories() {
             scroll={false}
             key={index}
             href={{
-              pathname: "/ebooks",
+              pathname: "/books",
               query: toogleQuery("categoria", categoria.nome),
             }}
           >
