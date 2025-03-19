@@ -44,13 +44,13 @@ export const EbooksHeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Link
-                href="/ebooks/explore"
+                href="/books"
                 className="bg-white text-indigo-900 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition duration-300"
               >
                 Explorar Catálogo
               </Link>
               <Link
-                href="/ebooks/recent"
+                href="/books"
                 className="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition duration-300"
               >
                 Adicionados Recentemente
