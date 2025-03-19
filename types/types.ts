@@ -9,6 +9,9 @@ export interface Ebook {
   description?: string;
   pages?: number;
 }
+export interface searchParamsProps {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
 export interface Book {
   id: string;

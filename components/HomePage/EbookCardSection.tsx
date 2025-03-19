@@ -10,7 +10,7 @@ function EbookCardSection({ title, content }: props) {
   if (!(ebook.length > 0)) return null;
 
   return (
-    <section className="">
+    <section>
       <h2 className="text-muted-foreground  font-bold mb-4 text-4xl">
         {title}
       </h2>
