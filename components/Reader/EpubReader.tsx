@@ -1,7 +1,6 @@
 "use client";
 import { BookWithContent } from "@/types/types";
 import React, { useState, useEffect, useRef } from "react";
-i;
 
 interface EpubReaderProps {
   initialPage?: number;
