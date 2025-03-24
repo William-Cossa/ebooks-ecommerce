@@ -12,3 +12,16 @@ export default async function getAllBooks() {
     return { success: false, error: error.message };
   }
 }
+
+export async function getBookById(id: string) {
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const data: Ebook[] = ebooks;
+
+    const book = data.find((book) => book.id === id);
+    return { success: true, book: book };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}

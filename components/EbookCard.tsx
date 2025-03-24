@@ -19,7 +19,7 @@ interface props {
 }
 function EbookCard({ ebooks }: props) {
   return (
-    <Card className="rounded-lg lg  :max-w-80 2xl:max-w-none">
+    <Card className="rounded-lg lg  :max-w-80 2xl:max-w-none flex flex-col gap-1">
       <CardHeader className="p-0 rounded-lg ">
         <Image
           src={ebooks.coverImage}
@@ -29,8 +29,15 @@ function EbookCard({ ebooks }: props) {
           className="rounded-t-lg h-60 object-cover"
         />
       </CardHeader>
-      <CardContent className="pt-4 h-28 flex flex-col justify-center gap-1">
-        <CardTitle>{ebooks?.title}</CardTitle>
+      <CardContent className="pt-4 h- flex flex-col justify-center gap-1 ">
+        <CardTitle className="text-xl ">
+          <Link
+            className="hover:text-primary transition-all "
+            href={`books/${ebooks?.id}`}
+          >
+            {ebooks?.title}
+          </Link>
+        </CardTitle>
         <div className="h-12  flex items-center ">
           <span className="py-4 font-semibold text-muted-foreground ">
             Autores:{" "}
@@ -61,11 +68,9 @@ function EbookCard({ ebooks }: props) {
           ))}
         </div>
 
-        {/* <Button className='w-full mt-2'>
-                <Link href=" "> 
-                    Ver e-book
-                </Link>
-            </Button> */}
+        {/* <Button className="w-full mt-2">
+          <Link href=" ">Ver e-book</Link>
+        </Button> */}
       </CardFooter>
     </Card>
   );

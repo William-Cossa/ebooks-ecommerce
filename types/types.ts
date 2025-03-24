@@ -1,5 +1,5 @@
 export interface Ebook {
-  id?: number;
+  id?: string;
   title: string;
   authors: string[];
   coverImage: string;
@@ -12,7 +12,11 @@ export interface Ebook {
 export interface searchParamsProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
-
+export interface paramsProps {
+  params: {
+    id: string;
+  };
+}
 export interface Book {
   id: string;
   title: string;

@@ -221,6 +221,8 @@
 // //     }
 // //   ];
 
+import { Ebook } from "@/types/types";
+
 // export const ebooks = [
 //   {
 //       id: 1,
@@ -345,7 +347,7 @@
 // ];
 export const ebooks = [
   {
-    id: 1,
+    id: "1",
     title: "O Poder do Hábito",
     authors: ["Charles Duhigg", "William Cossa", "Cossa William"],
     categories: ["Autoajuda", "Psicologia", "Chatice", "Psicologia", "Chatice"],
@@ -357,7 +359,7 @@ export const ebooks = [
       "Entenda como os hábitos funcionam e como transformá-los para melhorar sua vida.",
   },
   {
-    id: 2,
+    id: "2",
     title: "Pai Rico, Pai Pobre",
     authors: ["Robert T. Kiyosaki"],
     categories: ["Finanças", "Educação"],
@@ -369,7 +371,7 @@ export const ebooks = [
       "Aprenda sobre educação financeira e como alcançar a independência financeira.",
   },
   {
-    id: 3,
+    id: "3",
     title: "1984",
     authors: ["George Orwell"],
     categories: ["Ficção", "Distopia"],
@@ -381,7 +383,7 @@ export const ebooks = [
       "Um clássico distópico que explora temas de vigilância e totalitarismo.",
   },
   {
-    id: 4,
+    id: "4",
     title: "A Arte da Guerra",
     authors: ["Sun Tzu"],
     categories: ["Estratégia", "História"],
@@ -393,7 +395,7 @@ export const ebooks = [
       "Antigo tratado militar que oferece lições valiosas sobre estratégia e tática.",
   },
   {
-    id: 5,
+    id: "5",
     title: "O Pequeno Príncipe",
     authors: ["Antoine de Saint-Exupéry"],
     categories: ["Infantil", "Filosofia"],
@@ -404,7 +406,7 @@ export const ebooks = [
     description: "Uma fábula poética sobre amizade, amor e a essência da vida.",
   },
   {
-    id: 6,
+    id: "6",
     title: "O Hobbit",
     authors: ["J.R.R. Tolkien"],
     categories: ["Fantasia", "Aventura"],
@@ -416,7 +418,7 @@ export const ebooks = [
       "A aventura de Bilbo Bolseiro em uma jornada épica pela Terra Média.",
   },
   {
-    id: 7,
+    id: "7",
     title: "O Código Da Vinci",
     authors: ["Dan Brown"],
     categories: ["Suspense", "Mistério"],
@@ -428,7 +430,7 @@ export const ebooks = [
       "Um thriller que combina arte, história e religião em uma trama intrigante.",
   },
   {
-    id: 8,
+    id: "8",
     title: "A Revolução dos Bichos",
     authors: ["George Orwell"],
     categories: ["Ficção", "Política"],
@@ -440,7 +442,7 @@ export const ebooks = [
       "Uma sátira política onde animais de uma fazenda se rebelam contra seus donos humanos.",
   },
   {
-    id: 9,
+    id: "9",
     title: "O Senhor dos Anéis: A Sociedade do Anel",
     authors: ["J.R.R. Tolkien"],
     categories: ["Fantasia", "Épico"],
@@ -452,7 +454,7 @@ export const ebooks = [
       "A primeira parte da épica trilogia de fantasia na Terra Média.",
   },
   {
-    id: 10,
+    id: "10",
     title: "Harry Potter e a Pedra Filosofal",
     authors: ["J.K. Rowling"],
     categories: ["Fantasia", "Infantil"],
@@ -463,7 +465,7 @@ export const ebooks = [
     description: "O início da jornada do jovem bruxo Harry Potter em Hogwarts.",
   },
   {
-    id: 11,
+    id: "11",
     title: "O Poder do Agora",
     authors: ["Eckhart Tolle"],
     categories: ["Espiritualidade", "Autoajuda"],
@@ -475,7 +477,7 @@ export const ebooks = [
       "Um guia para a iluminação espiritual através da presença no momento presente.",
   },
   {
-    id: 12,
+    id: "12",
     title: "Mindset: A Nova Psicologia do Sucesso",
     authors: ["Carol S. Dweck"],
     categories: ["Psicologia", "Educação"],
@@ -487,7 +489,7 @@ export const ebooks = [
       "Explora como nossas crenças sobre nossas habilidades podem influenciar nosso sucesso.",
   },
   {
-    id: 13,
+    id: "13",
     title: "Os Sete Maridos de Evelyn Hugo",
     authors: ["Taylor Jenkins Reid"],
     categories: ["Romance", "Drama"],
@@ -499,12 +501,24 @@ export const ebooks = [
       "A história fictícia de uma lendária atriz de Hollywood e seus sete casamentos.",
   },
   {
-    id: 14,
+    id: "14",
     title: "Sapiens: Uma Breve História da Humanidade",
     authors: ["Yuval Noah Harari"],
     categories: ["História", "Ciência"],
     coverImage: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f",
     price: 19.99,
+    rating: 4.6,
+    pages: 464,
+    description:
+      "Uma narrativa abrangente sobre a história da humanidade, desde os primórdios até os dias atuais.",
+  },
+  {
+    id: "777",
+    title: "Daqui a uma semana",
+    authors: ["Yuval Noah Harari, Andre Novela"],
+    categories: ["História", "Ciência"],
+    coverImage: "/images/hero.jpg",
+    price: 120.99,
     rating: 4.6,
     pages: 464,
     description:
