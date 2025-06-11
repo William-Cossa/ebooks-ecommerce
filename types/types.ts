@@ -17,14 +17,7 @@ export interface paramsProps {
     id: string;
   };
 }
-// export interface Book {
-//   id: string;
-//   title: string;
-//   author: string;
-//   description: string;
-//   coverImage: string;
-//   totalPages?: number;
-// }
+
 export interface Book {
   id: string;
   title: string;

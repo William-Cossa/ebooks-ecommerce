@@ -1,11 +1,14 @@
 import HeroSection from "@/components/HomePage/HeroSection";
 import EbookCardSection from "@/components/HomePage/EbookCardSection";
-import { ebooks } from "@/data/ebooks";
+import { loadBooks } from "@/data/books";
 import BookFormatSection from "@/components/HomePage/BookFormatSection";
+import getAllBooks from "@/lib/actions/books-actions";
 
-export default function Home() {
-  const mostPopular = ebooks.slice(0, 4);
-  const newEbooks = ebooks.slice(5, 9);
+export default async function Home() {
+  const { books } = await getAllBooks();
+  const mostPopular = books?.slice(0, 4);
+  console.log(books);
+  const newEbooks = books?.slice(5, 9);
   return (
     <div className="bg-bubbles">
       {/* <Hero/> */}

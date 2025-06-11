@@ -10,7 +10,7 @@ interface props {
 }
 function EbookCardSection({ title, content }: props) {
   const book: Book[] = content;
-  if (!(book.length > 0)) return <CategoryNotFound />;
+  if (!(book?.length > 0)) return <CategoryNotFound />;
 
   return (
     <section className="w-full">
