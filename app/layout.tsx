@@ -35,13 +35,13 @@ export default function RootLayout({
         // className={`flex flex-col bg-secondary w-scree ${nunito.className} ${montserrat.variable}`}
         className={`flex flex-col min-h-screen bg-secondary w-screen overflow-x-hidden`}
       >
-        <CartProvider>
-          <OrderProvider>
+        <OrderProvider>
+          <CartProvider>
             <Navbar />
             <div className="flex-grow">{children}</div>
             <Footer />
-          </OrderProvider>
-        </CartProvider>
+          </CartProvider>
+        </OrderProvider>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
-
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Book } from '@/types';
+"use client";
+import { Book } from "@/types/types";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 export interface OrderItem {
   book: Book;
@@ -12,7 +12,7 @@ export interface Order {
   items: OrderItem[];
   total: number;
   date: string;
-  status: 'pending' | 'processing' | 'completed' | 'cancelled';
+  status: "pending" | "processing" | "completed" | "cancelled";
 }
 
 interface OrderContextType {
@@ -26,17 +26,19 @@ const OrderContext = createContext<OrderContextType | undefined>(undefined);
 export const useOrders = () => {
   const context = useContext(OrderContext);
   if (!context) {
-    throw new Error('useOrders must be used within an OrderProvider');
+    throw new Error("useOrders must be used within an OrderProvider");
   }
   return context;
 };
 
-export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [orders, setOrders] = useState<Order[]>([]);
 
   // Carregar pedidos do localStorage
   useEffect(() => {
-    const savedOrders = localStorage.getItem('orders');
+    const savedOrders = localStorage.getItem("orders");
     if (savedOrders) {
       setOrders(JSON.parse(savedOrders));
     }
@@ -44,7 +46,7 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   // Salvar pedidos no localStorage
   useEffect(() => {
-    localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem("orders", JSON.stringify(orders));
   }, [orders]);
 
   const addOrder = (items: OrderItem[], total: number) => {
@@ -53,14 +55,14 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       items,
       total,
       date: new Date().toISOString(),
-      status: 'pending'
+      status: "pending",
     };
 
-    setOrders(prev => [newOrder, ...prev]);
+    setOrders((prev) => [newOrder, ...prev]);
   };
 
   const getOrderById = (id: string) => {
-    return orders.find(order => order.id === id);
+    return orders.find((order) => order.id === id);
   };
 
   return (
