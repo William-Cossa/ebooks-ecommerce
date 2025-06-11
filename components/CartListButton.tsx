@@ -1,48 +1,24 @@
 "use client";
-
-import { useState } from "react";
-import { Heart, ShoppingCart } from "lucide-react";
-import { toggleCartList, CartListBook } from "@/lib/actions/cartList-actions";
+import Link from "next/link";
+import React from "react";
 import { Button } from "./ui/button";
+import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
-interface CartListButtonProps {
-  book: CartListBook | any;
-  initialIscartListed?: boolean;
-}
-
-export function CartListButton({
-  book,
-  initialIscartListed = false,
-}: CartListButtonProps) {
-  const [iscartListed, setIscartListed] = useState(initialIscartListed);
-
-  const handletoggleCartList = async () => {
-    try {
-      await toggleCartList(book);
-      setIscartListed(!iscartListed);
-    } catch (error) {
-      console.error("Erro ao atualizar cartList", error);
-    }
-  };
-
+function CartListButton() {
+  const { totalItems } = useCart();
   return (
-    <Button
-      onClick={handletoggleCartList}
-      className="hover:bg-gray-100 p-2 rounded-full transition-colors"
-      aria-label={
-        iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"
-      }
-    >
-      <ShoppingCart
-        className={`
-          w-6 h-6 
-          ${
-            iscartListed
-              ? "fill-primary text-primary"
-              : "text-gray-500 hover:text-primary"
-          }
-        `}
-      />
-    </Button>
+    <Link href="/cart" className="relative">
+      <Button variant="outline" size="icon" className="relative">
+        <ShoppingCart className="h-5 w-5" />
+        {totalItems > 0 && (
+          <span className="absolute -top-2 -right-2 bg-blue-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+            {totalItems}
+          </span>
+        )}
+      </Button>
+    </Link>
   );
 }
+
+export default CartListButton;

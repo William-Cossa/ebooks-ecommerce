@@ -15,7 +15,7 @@ import { RatingStars } from "./RatingsStars";
 import { Badge } from "./ui/badge";
 
 import { getCartList } from "@/lib/actions/cartList-actions";
-import { CartListButton } from "@/components/CartListButton";
+import { CartListButton } from "@/components/AddCartListButton";
 
 interface props {
   ebook: Ebook;
@@ -26,7 +26,7 @@ async function EbookCard({ ebook }: props) {
   const iscartListed = cartList.some((item) => item.id === ebook.id);
 
   return (
-    <Card className="rounded-lg lg  :max-w-80 2xl:max-w-none flex flex-col gap-1">
+    <Card className=" rounded-lg lg  :max-w-80 2xl:max-w-none flex flex-col gap-1">
       <CardHeader className="p-0 rounded-lg ">
         <Image
           src={ebook?.coverImage}
