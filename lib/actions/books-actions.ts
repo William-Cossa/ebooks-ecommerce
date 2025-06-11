@@ -1,11 +1,11 @@
-import { loadBooks } from "@/data/books";
 import { Ebook } from "@/types/types";
 import axios from "axios";
+import { loadBooks } from "./storage-actions";
 export default async function getAllBooks() {
   try {
     await new Promise((resolve) => setTimeout(resolve, 0));
     // const data = await response.json();
-    const data = loadBooks();
+    const data = await loadBooks();
     console.log(data);
     return { success: true, books: data };
   } catch (error: any) {
@@ -17,7 +17,7 @@ export async function getBookById(id: string) {
   try {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const data = loadBooks();
+    const data = await loadBooks();
 
     const book = data.find((book) => book.id === id);
 

@@ -196,94 +196,94 @@ export const initialBooks: Book[] = [
 ];
 
 // Funções para gerenciar localStorage
-const STORAGE_KEY = "unibooks_data";
+// const STORAGE_KEY = "unibooks_data";
 
-export const saveBooks = (books: Book[]) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(books));
-};
+// export const saveBooks = (books: Book[]) => {
+//   localStorage.setItem(STORAGE_KEY, JSON.stringify(books));
+// };
 
-export const loadBooks = (): Book[] => {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored) {
-    try {
-      return JSON.parse(stored);
-    } catch (error) {
-      console.error("Error parsing stored books:", error);
-    }
-  }
-  // Se não há dados salvos, inicializa com os dados padrão
-  saveBooks(initialBooks);
-  return initialBooks;
-};
+// export const loadBooks = (): Book[] => {
+//   const stored = localStorage.getItem(STORAGE_KEY);
+//   if (stored) {
+//     try {
+//       return JSON.parse(stored);
+//     } catch (error) {
+//       console.error("Error parsing stored books:", error);
+//     }
+//   }
+//   // Se não há dados salvos, inicializa com os dados padrão
+//   saveBooks(initialBooks);
+//   return initialBooks;
+// };
 
-export const addBook = (book: Omit<Book, "id">): Book => {
-  const books = loadBooks();
-  const newBook = {
-    ...book,
-    id: Date.now().toString(),
-  };
-  const updatedBooks = [...books, newBook];
-  saveBooks(updatedBooks);
-  return newBook;
-};
+// export const addBook = (book: Omit<Book, "id">): Book => {
+//   const books = loadBooks();
+//   const newBook = {
+//     ...book,
+//     id: Date.now().toString(),
+//   };
+//   const updatedBooks = [...books, newBook];
+//   saveBooks(updatedBooks);
+//   return newBook;
+// };
 
-// Carrega os livros do localStorage ou usa os dados iniciais
-export const books = loadBooks();
+// // Carrega os livros do localStorage ou usa os dados iniciais
+// export const books = loadBooks();
 
-export const getPopularBooks = (): Book[] => {
-  const currentBooks = loadBooks();
-  return [...currentBooks].sort((a, b) => b.rating - a.rating).slice(0, 6);
-};
+// export const getPopularBooks = (): Book[] => {
+//   const currentBooks = loadBooks();
+//   return [...currentBooks].sort((a, b) => b.rating - a.rating).slice(0, 6);
+// };
 
-export const getNewestBooks = (): Book[] => {
-  const currentBooks = loadBooks();
-  return [...currentBooks]
-    .sort(
-      (a, b) =>
-        new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
-    )
-    .slice(0, 6);
-};
+// export const getNewestBooks = (): Book[] => {
+//   const currentBooks = loadBooks();
+//   return [...currentBooks]
+//     .sort(
+//       (a, b) =>
+//         new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+//     )
+//     .slice(0, 6);
+// };
 
-export const getRelatedBooks = (bookId: string): Book[] => {
-  const currentBooks = loadBooks();
-  const currentBook = currentBooks.find((book) => book.id === bookId);
-  if (!currentBook) return [];
+// export const getRelatedBooks = (bookId: string): Book[] => {
+//   const currentBooks = loadBooks();
+//   const currentBook = currentBooks.find((book) => book.id === bookId);
+//   if (!currentBook) return [];
 
-  // Encontrar livros com gêneros similares
-  return currentBooks
-    .filter(
-      (book) =>
-        book.id !== bookId &&
-        book.genres.some((genre) => currentBook.genres.includes(genre))
-    )
-    .slice(0, 4);
-};
+//   // Encontrar livros com gêneros similares
+//   return currentBooks
+//     .filter(
+//       (book) =>
+//         book.id !== bookId &&
+//         book.genres.some((genre) => currentBook.genres.includes(genre))
+//     )
+//     .slice(0, 4);
+// };
 
-export const getBooksByAuthor = (
-  authorName: string,
-  excludeBookId?: string
-): Book[] => {
-  const currentBooks = loadBooks();
-  return currentBooks.filter(
-    (book) =>
-      book.author.includes(authorName) &&
-      (!excludeBookId || book.id !== excludeBookId)
-  );
-};
+// export const getBooksByAuthor = (
+//   authorName: string,
+//   excludeBookId?: string
+// ): Book[] => {
+//   const currentBooks = loadBooks();
+//   return currentBooks.filter(
+//     (book) =>
+//       book.author.includes(authorName) &&
+//       (!excludeBookId || book.id !== excludeBookId)
+//   );
+// };
 
-export const getBooksByGenre = (genre: string): Book[] => {
-  const currentBooks = loadBooks();
-  return currentBooks.filter((book) => book.genres.includes(genre));
-};
+// export const getBooksByGenre = (genre: string): Book[] => {
+//   const currentBooks = loadBooks();
+//   return currentBooks.filter((book) => book.genres.includes(genre));
+// };
 
-export const getAllGenres = (): string[] => {
-  const currentBooks = loadBooks();
-  const genresSet = new Set<string>();
-  currentBooks.forEach((book) => {
-    book.genres.forEach((genre) => {
-      genresSet.add(genre);
-    });
-  });
-  return Array.from(genresSet).sort();
-};
+// export const getAllGenres = (): string[] => {
+//   const currentBooks = loadBooks();
+//   const genresSet = new Set<string>();
+//   currentBooks.forEach((book) => {
+//     book.genres.forEach((genre) => {
+//       genresSet.add(genre);
+//     });
+//   });
+//   return Array.from(genresSet).sort();
+// };

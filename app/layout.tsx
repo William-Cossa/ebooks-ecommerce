@@ -3,6 +3,8 @@ import { Montserrat, Nunito, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
+import { CartProvider } from "@/contexts/CartContext";
+import { OrderProvider } from "@/contexts/OrderContext";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -33,9 +35,13 @@ export default function RootLayout({
         // className={`flex flex-col bg-secondary w-scree ${nunito.className} ${montserrat.variable}`}
         className={`flex flex-col min-h-screen bg-secondary w-screen overflow-x-hidden`}
       >
-        <Navbar />
-        <div className="flex-grow">{children}</div>
-        <Footer />
+        <CartProvider>
+          <OrderProvider>
+            <Navbar />
+            <div className="flex-grow">{children}</div>
+            <Footer />
+          </OrderProvider>
+        </CartProvider>
       </body>
     </html>
   );
