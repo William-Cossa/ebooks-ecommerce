@@ -13,14 +13,16 @@ const BookCarousel: React.FC<BookCarouselProps> = ({ title, books }) => {
     return null;
   }
 
+  const carouselId = `carousel-${title.replace(/\s+/g, "-").toLowerCase()}`;
+
   return (
     <div className="my-8">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-bookBlue">{title}</h2>
-        <CarouselControls />
+        <CarouselControls carouselId={carouselId} />
       </div>
       <div
-        id={`carousel-${title.replace(/\s+/g, "-").toLowerCase()}`}
+        id={carouselId}
         className="carousel flex overflow-x-auto space-x-4 pb-4 -mx-4 px-4 snap-x scroll-smooth"
       >
         {books?.map((book) => (
