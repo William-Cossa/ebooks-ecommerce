@@ -1,22 +1,23 @@
 import HeroSection from "@/components/HomePage/HeroSection";
 import EbookCardSection from "@/components/HomePage/EbookCardSection";
-import { loadBooks } from "@/data/books";
 import BookFormatSection from "@/components/HomePage/BookFormatSection";
-import getAllBooks from "@/lib/actions/books-actions";
+import getAllBooks, {
+  getNewestBooks,
+  getPopularBooks,
+} from "@/lib/actions/books-actions";
+import BookCarousel from "@/components/BookCarousel";
 
 export default async function Home() {
   const { books } = await getAllBooks();
-  const mostPopular = books?.slice(0, 4);
-  console.log(books);
-  const newEbooks = books?.slice(5, 9);
+  const popularBooks = await getPopularBooks();
+  const newestBooks = await getNewestBooks();
   return (
     <div className="bg-bubbles">
       {/* <Hero/> */}
       <HeroSection />
       <main className="container  flex flex-col gap-12 pb-24">
-        <EbookCardSection title={"Mais Populares"} content={mostPopular} />
-
-        <EbookCardSection title={"Mais Recentes"} content={newEbooks} />
+        <BookCarousel title="Mais Populares" books={popularBooks} />
+        <BookCarousel title="Lançamentos" books={newestBooks} />
 
         <BookFormatSection />
       </main>

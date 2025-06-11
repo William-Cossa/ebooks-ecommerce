@@ -1,3 +1,4 @@
+"use server";
 import { initialBooks } from "@/data/books";
 import { Book } from "@/types/types";
 import { cookies } from "next/headers";
