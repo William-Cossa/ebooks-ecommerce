@@ -17,15 +17,33 @@ export interface paramsProps {
     id: string;
   };
 }
+// export interface Book {
+//   id: string;
+//   title: string;
+//   author: string;
+//   description: string;
+//   coverImage: string;
+//   totalPages?: number;
+// }
 export interface Book {
   id: string;
   title: string;
-  author: string;
-  description: string;
+  author: string[];
   coverImage: string;
-  totalPages?: number;
+  description: string;
+  price: number;
+  rating: number;
+  genres: string[];
+  format?: string;
+  pages?: number;
+  publishDate: string;
+  publisher: string;
 }
 
+export interface CartItem {
+  book: Book;
+  quantity: number;
+}
 export interface BookWithContent extends Book {
   content: string | string[]; // Pode ser texto puro ou array de páginas
 }

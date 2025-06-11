@@ -18,19 +18,18 @@ const HeroSection = () => {
 
   const features = [
     { icon: <Book />, text: "Mais de 10+ Books" },
-    // { icon: <Download />, text: "Instant Downloads" },
     { icon: <BookOpen />, text: "Leia em qualquer lugar" },
   ];
 
   return (
-    <div className="min-h-screen mt-[7vh] bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 overflow-hidden">
-      <div className="mx-auto px-20 py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 overflow-hidden">
+      <div className="container mx-auto px-20 py-16 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center  overflow-hidden">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8  "
           >
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Descubra um Mundo de Conhecimento no Seu Bolso

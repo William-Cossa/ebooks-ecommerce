@@ -1,12 +1,12 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     container: {
@@ -14,7 +14,7 @@ const config: Config = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
-        "xs": "520px"
+        // xs: "520px",
       },
     },
     extend: {
@@ -56,7 +56,12 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        bookBlue: "#1A365D",
+        bookOrange: "#2563EB",
+        bookBrown: "#8B4513",
+        bookLight: "#F8F9FA",
       },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -72,70 +77,68 @@ const config: Config = {
           to: { height: "0" },
         },
         bounceAndResize: {
-          '0%': { transform: 'scale(1, 1) translateY(0)' },
-          '10%': { transform: 'scale(1.1, .9) translateY(0)' },
-          '30%': { transform: 'scale(.9, 1.1) translateY(-50px)' },
-          '50%': { transform: 'scale(1.05, .95) translateY(0)' },
-          '57%': { transform: 'scale(1, 1) translateY(-7px)' },
-          '64%': { transform: 'scale(1, 1) translateY(0)' },
-          '100%': { transform: 'scale(1, 1) translateY(0)' },
+          "0%": { transform: "scale(1, 1) translateY(0)" },
+          "10%": { transform: "scale(1.1, .9) translateY(0)" },
+          "30%": { transform: "scale(.9, 1.1) translateY(-50px)" },
+          "50%": { transform: "scale(1.05, .95) translateY(0)" },
+          "57%": { transform: "scale(1, 1) translateY(-7px)" },
+          "64%": { transform: "scale(1, 1) translateY(0)" },
+          "100%": { transform: "scale(1, 1) translateY(0)" },
         },
         bounceAndResize2: {
-          '0%': { transform: 'scale(1)' },
-  '20%': { transform: 'scale(1.05)' },
-  '50%': { transform: 'scale(0.95)' },
-  '80%': { transform: 'scale(1.02)' },
-  '100%': { transform: 'scale(1)' },
+          "0%": { transform: "scale(1)" },
+          "20%": { transform: "scale(1.05)" },
+          "50%": { transform: "scale(0.95)" },
+          "80%": { transform: "scale(1.02)" },
+          "100%": { transform: "scale(1)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        bounceAndResize: 'bounceAndResize 1s ease-in-out',
-        bounceAndResize2: 'bounceAndResize2 1s ease-in-out',
-
+        bounceAndResize: "bounceAndResize 1s ease-in-out",
+        bounceAndResize2: "bounceAndResize2 1s ease-in-out",
       },
       backgroundImage: {
-      
-         "perfil" : "url('../public/images/icon.ico')",
-         "svg" : "url('../public/images/subtle-prism.svg')",
-         "fundoSenha" : "url('../public/images/SenhaPic.jpg')",
-         "fundolingua" : "url('../public/images/IDIOMA.png')",
-         "fundoLanguage" : "url('../public/images/LanguageNew.jpg')",
-         "membro" : "url('../public/images/membroimage1.png')",
-         "fale" : "url('../public/images/fale.png')",
+        perfil: "url('../public/images/icon.ico')",
+        svg: "url('../public/images/subtle-prism.svg')",
+        fundoSenha: "url('../public/images/SenhaPic.jpg')",
+        fundolingua: "url('../public/images/IDIOMA.png')",
+        fundoLanguage: "url('../public/images/LanguageNew.jpg')",
+        membro: "url('../public/images/membroimage1.png')",
+        fale: "url('../public/images/fale.png')",
       },
       fontFamily: {
-        nunito: ['var(--font-nunito)', 'sans-serif'],
-        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+        playfair: ["var(--font-playfair)", "serif"],
+        nunito: ["var(--font-nunito)", "sans-serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
       },
-
     },
     screens: {
-      'xs': '480px',
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      'large': '1400px',
-      '2xl': '1536px',
+      xs: "480px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      large: "1400px",
+      "2xl": "1536px",
     },
     clipPath: {
       halfClip: "polygon(0 0, 36% 0, 71% 100%, 0% 100%)",
-      hexagon : " polygon(100% 0, 100% 59%, 32% 100%, 0 100%, 0 0)",
+      hexagon: " polygon(100% 0, 100% 59%, 32% 100%, 0 100%, 0 0)",
       halfClip2: "polygon(90% 0, 90% 65%, 0 100%, 0 100%, 0 0)",
       halfClip3: "polygon((49% 0, 80% 100%, 0 100%, 0 100%, 0 0)",
       halfClipMD: "polygon(49% 0, 80% 100%, 0 100%, 0 100%, 0 0)",
       halfClipMobile: "polygon(100% 0, 100% 56%, 22% 100%, 0 100%, 0 0)",
-      'custom-shape': 'polygon(0 0, 100% 0%, 100% 75%, 0% 100%)',
-      'custom-sectionlanguage': 'polygon(0 0, 35% 0, 65% 100%, 0 100%)',
-      'custom-sectioncolaboradores': 'polygon(0 34%, 100% 0%, 100% 62%, 0% 100%);',
-      'custom-heromobile': 'polygon(0 0, 100% 0, 100% 20%, 100% 83%, 33% 100%, 18% 100%, 0 100%, 0% 20%);',
+      "custom-shape": "polygon(0 0, 100% 0%, 100% 75%, 0% 100%)",
+      "custom-sectionlanguage": "polygon(0 0, 35% 0, 65% 100%, 0 100%)",
+      "custom-sectioncolaboradores":
+        "polygon(0 34%, 100% 0%, 100% 62%, 0% 100%);",
+      "custom-heromobile":
+        "polygon(0 0, 100% 0, 100% 20%, 100% 83%, 33% 100%, 18% 100%, 0 100%, 0% 20%);",
     },
-    
   },
   plugins: [],
-} satisfies Config
+} satisfies Config;
 
-
-export default config
+export default config;

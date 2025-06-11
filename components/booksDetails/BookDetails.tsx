@@ -5,7 +5,7 @@ import React from "react";
 function BookDetails({ book }: { book: Ebook }) {
   return (
     <section className="h-full w- grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-10 px-20">
-      <div className="col-span-1 min-w-[500px] flex items-center justify-center  border-r bo">
+      <div className="col-span-1 min-w- flex items-center justify-center  border-r bo">
         <Image
           src={book.coverImage}
           alt={book.title}
