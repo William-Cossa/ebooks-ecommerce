@@ -8,6 +8,7 @@ import NavItem from "./NavbarItem";
 import Logo from "./Logo";
 import SearchField from "./SearchField";
 import CartListButton from "../CartListButton";
+import MenuButton from "./MenuButton";
 
 function Navbar() {
   return (
@@ -20,10 +21,16 @@ function Navbar() {
               <NavItem key={link.href} href={link.href} label={link.label} />
             ))}
           </nav>
-          <div className="flex gap-1">
+
+          <div className="hidden md:flex items-center space-x-4">
             <SearchField />
             <CartListButton />
             {/* <CartListDropdown /> */}
+          </div>
+
+          <div className="md:hidden flex items-center mr-4 gap-4">
+            <CartListButton />
+            <MenuButton />
           </div>
         </div>
       </div>

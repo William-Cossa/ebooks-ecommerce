@@ -8,22 +8,34 @@ import Image from "next/image";
 import heroImage from "@/public/images/book.jpg";
 import heroImage2 from "@/public/images/hero.jpg";
 import Link from "next/link";
+import getAllBooks from "@/lib/actions/books-actions";
 
 const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [totalBooks, setTotalBooks] = useState(Number);
 
   useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const { books } = await getAllBooks();
+        setTotalBooks(books ? books.length : 100);
+      } catch (error) {
+        console.error("Erro ao buscar livros:", error);
+      }
+    };
+
+    fetchBooks();
     setIsVisible(true);
   }, []);
 
   const features = [
-    { icon: <Book />, text: "Mais de 10+ Books" },
+    { icon: <Book />, text: `Mais de ${totalBooks}+ livros` },
     { icon: <BookOpen />, text: "Leia em qualquer lugar" },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 overflow-hidden">
-      <div className="container mx-auto px-20 py-16 lg:py-24">
+      <div className="container mx-auto px-8 lg:px-20 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center  overflow-hidden">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -31,10 +43,10 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8  "
           >
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
               Descubra um Mundo de Conhecimento no Seu Bolso
             </h1>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className=" text-lg md:text-xl text-gray-700 leading-relaxed">
               Mergulhe em uma extensa coleção de livros digitais. Leia, aprenda
               e cresça com nossa seleção selecionada de e-books disponíveis a
               qualquer hora e em qualquer lugar.
@@ -45,7 +57,9 @@ const HeroSection = () => {
                   key={index}
                   className="flex items-center space-x-2 text-gray-700"
                 >
-                  <span className="text-primary text-xl">{feature.icon}</span>
+                  <span className="text-primary text-lg lg:text-xl">
+                    {feature.icon}
+                  </span>
                   <span>{feature.text}</span>
                 </div>
               ))}
@@ -63,7 +77,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative h-[600px] w-full">
+            <div className="relative h-[450px] lg:h-[600px] w-full">
               <Image
                 src={heroImage}
                 alt="Digital Reading Experience"
