@@ -1,5 +1,4 @@
 import React from "react";
-import EbookCard from "../EbookCard";
 import { Book, Ebook } from "@/types/types";
 import CategoryNotFound from "../books/CategoryNotFound";
 import BookCard from "../BookCard";

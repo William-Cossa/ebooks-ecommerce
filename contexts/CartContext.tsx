@@ -9,6 +9,8 @@ interface CartContextType {
   items: CartItem[];
   addToCart: (book: Book) => void;
   removeFromCart: (bookId: string) => void;
+  toggleCartItem: (book: Book) => void;
+  isCartListed: (bookId: string) => boolean;
   updateQuantity: (bookId: string, quantity: number) => void;
   clearCart: () => void;
   total: number;
@@ -44,6 +46,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.setItem("cart", JSON.stringify(items));
   }, [items]);
 
+  const isCartListed = (bookId: string): boolean => {
+    return items.some((item) => item.book.id === bookId);
+  };
+
   const addToCart = (book: Book) => {
     setItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.book.id === book.id);
@@ -75,6 +81,19 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     setItems((prevItems) =>
       prevItems.filter((item) => item.book.id !== bookId)
     );
+  };
+  const toggleCartItem = (book: Book) => {
+    setItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.book.id === book.id);
+
+      if (existingItem) {
+        toast.success(`${book.title} removido do carrinho.`);
+        return prevItems.filter((item) => item.book.id !== book.id);
+      } else {
+        toast.success(`${book.title} adicionado ao carrinho!`);
+        return [...prevItems, { book, quantity: 1 }];
+      }
+    });
   };
 
   const updateQuantity = (bookId: string, quantity: number) => {
@@ -134,6 +153,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         items,
         addToCart,
         removeFromCart,
+        toggleCartItem,
+        isCartListed,
         updateQuantity,
         clearCart,
         total,
