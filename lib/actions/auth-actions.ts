@@ -1,12 +1,11 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { loginOTPauth } from "@/app/api/auth/_auth-actions";
 import { routes } from "@/config/routes";
-import { destroySession } from "@/services/auth-services";
+import { createSessionToken, destroySession } from "@/services/auth-services";
 import axios from "axios";
 import { redirect } from "next/navigation";
-import "react-toastify/dist/ReactToastify.css";
+import { decodeJwt } from "jose";
 
 export async function createAccount(
   userName: string,
@@ -35,49 +34,17 @@ export async function createAccount(
   }
 }
 
-export async function getUserID() {
-  const token = (await cookies()).get("auth_token")?.value;
-  if (!token) {
-    return null;
-  }
-
-  try {
-    const parts = token.split(".");
-    if (parts.length !== 3) return null;
-
-    const payloadBase64Url = parts[1];
-
-    const payloadBase64 = payloadBase64Url
-      .replace(/-/g, "+")
-      .replace(/_/g, "/");
-
-    const payloadJson = Buffer.from(payloadBase64, "base64").toString("utf8");
-
-    const payload = JSON.parse(payloadJson);
-
-    return payload.sub || null;
-  } catch (error) {
-    console.error("Erro ao decodificar o token JWT:", error);
-    return null;
-  }
-}
-
-export async function verifyOTP(email: string, otp: string, from: string) {
+export async function verifyOTP(email: string, otp: string) {
   try {
     let response;
 
     console.log("Verificando OTP Login:", otp);
 
-    if (from === "criar-conta") {
-      response = await axios.patch(routes.verify_otp, { otp, email });
-    }
-
-    response = await axios.post(routes.verify_login, { otp, email });
+    response = await axios.post(routes.verify_otp, { otp, email });
 
     if (response.status === 200) {
       const token = response.data.token;
 
-      // Salva o token no cookie
       (
         await // Salva o token no cookie
         cookies()
@@ -88,8 +55,6 @@ export async function verifyOTP(email: string, otp: string, from: string) {
         maxAge: 60 * 60 * 24 * 300, // 30 dias
         sameSite: "lax",
       });
-
-      await loginOTPauth(email, otp);
     }
 
     return { data: response.data, status: response.status };
@@ -106,22 +71,56 @@ export async function verifyOTP(email: string, otp: string, from: string) {
 
 export async function login(value: string, password: string) {
   try {
-    const response = await axios.post(routes.login, { value, password }); // Mudança aqui
-    return { data: response.data, status: response.status };
+    const response = await axios.post(routes.login, { value, password });
+    if (response.status === 200) {
+      const accessToken = response.data.token;
+      const user = decodeJwt(accessToken);
+      user.id = user.sub;
+      user.accessToken = accessToken;
+
+      await createSessionToken(user);
+      return {
+        sucess: true,
+        status: response.status,
+        data: response.data,
+        message: "Login efectuado com sucesso",
+      };
+    } else if (response?.status === 400 || response?.status === 401) {
+      return {
+        sucess: false,
+        status: response.status,
+        data: response.data,
+        message:
+          "Credenciais inválidas. Por favor, verifique seu e-mail ou senha.",
+      };
+    }
+    if (response?.status === 429)
+      return {
+        sucess: false,
+        status: response.status,
+        data: response.data,
+        message:
+          "Você excedeu o limite de tentativas de login. Por favor, tente novamente mais tarde(Após 5 Minutos).",
+      };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Erro na resposta:", error.response?.data);
       console.error("Status:", error.response?.status);
-      return { sucess: false, status: error.status, error: error.message };
+      return {
+        sucess: false,
+        status: error.status,
+        ErrorMessage: error.message,
+      };
     } else {
       console.error("Erro desconhecido:", error);
+      return { sucess: false, errorMessage: error };
     }
   }
 }
 
 export async function reenviarOTP(email: string) {
   try {
-    const response = await axios.post(routes.reenviarOTP, { email }); // Mudança aqui
+    const response = await axios.post(routes.resend_otp, { email });
     return { data: response.data, status: response.status };
   } catch (error) {
     if (axios.isAxiosError(error)) {
