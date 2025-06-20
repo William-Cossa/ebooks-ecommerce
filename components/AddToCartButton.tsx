@@ -11,9 +11,9 @@ interface CartListButtonProps {
 }
 
 export function AddToCartButton({ book }: CartListButtonProps) {
-  const { addToCart, isCartListed, toggleCartItem } = useCart();
+  const { isCartListed, toggleCartItem } = useCart();
   const [iscartListed, setIscartListed] = useState(isCartListed(book.id));
-  // const isEbook = book.format?.toLowerCase() !== "livro";
+  const isEbook = book.format?.toLowerCase() !== "livro";
 
   const handletoggleCartList = () => {
     try {

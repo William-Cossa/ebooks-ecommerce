@@ -68,7 +68,6 @@ export async function verifyOTP(email: string, otp: string) {
     }
   }
 }
-
 export async function login(value: string, password: string) {
   try {
     const response = await axios.post(routes.login, { value, password });
