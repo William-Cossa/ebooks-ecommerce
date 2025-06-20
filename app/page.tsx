@@ -1,5 +1,4 @@
 import HeroSection from "@/components/HomePage/HeroSection";
-import EbookCardSection from "@/components/HomePage/EbookCardSection";
 import BookFormatSection from "@/components/HomePage/BookFormatSection";
 import getAllBooks, {
   getNewestBooks,
@@ -11,6 +10,7 @@ export default async function Home() {
   try {
     const { books } = await getAllBooks();
     const popularBooks = await getPopularBooks();
+    console.log("Popilar books", popularBooks);
     const newestBooks = await getNewestBooks();
 
     return (

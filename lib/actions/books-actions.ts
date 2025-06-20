@@ -1,4 +1,4 @@
-import { Book, Ebook } from "@/types/types";
+import { Book } from "@/types/types";
 import axios from "axios";
 import { loadBooks } from "./storage-actions";
 export default async function getAllBooks() {
@@ -45,7 +45,6 @@ export async function getRelatedBooks(bookId: string) {
   const currentBooks = await loadBooks();
   const currentBook = currentBooks.find((book) => book.id === bookId);
   if (!currentBook) return [];
-
   // Encontrar livros com gêneros similares
   return currentBooks
     .filter(
@@ -55,7 +54,6 @@ export async function getRelatedBooks(bookId: string) {
     )
     .slice(0, 4);
 }
-
 export async function getBooksByAuthor(
   authorName: string,
   excludeBookId?: string
@@ -67,7 +65,6 @@ export async function getBooksByAuthor(
       (!excludeBookId || book.id !== excludeBookId)
   );
 }
-
 export async function getBooksByGenre(genre: string) {
   const currentBooks = await loadBooks();
   return currentBooks.filter((book) => book.genres.includes(genre));
@@ -98,10 +95,10 @@ export async function getAllBooksTeste() {
       }
     );
 
-    const data: Ebook[] = res.data;
+    const data: Book[] = res.data;
 
     console.log(data);
-    console.log("AQUI DEVERIAM VIR DADOS============================ ");
+    console.log("AQUI DEVERIAM VIR DADOS");
 
     return { success: true, books: data };
   } catch (error: any) {

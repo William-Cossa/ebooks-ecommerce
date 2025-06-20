@@ -5,8 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/contexts/CartContext";
 import { OrderProvider } from "@/contexts/OrderContext";
-import { Toaster } from "@/components/ui/toaster";
-// import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -43,7 +42,8 @@ export default function RootLayout({
             <div className="flex-grow">{children}</div>
             <Footer />
           </CartProvider>
-          <Toaster />
+          {/* <Toaster /> */}
+          <Sonner />
         </OrderProvider>
       </body>
     </html>
