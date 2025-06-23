@@ -26,7 +26,6 @@ export default function LoginForm() {
       if (!response?.sucess) {
         toast.error("Erro!!!", {
           description: response?.message,
-          className: "bg-red-500 text-white",
         });
         console.log("Erro", response?.message);
         // console.error(response?.errorMessage);
