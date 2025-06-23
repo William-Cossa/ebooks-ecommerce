@@ -1,138 +1,27 @@
-"use client";
-import logo from "@/public/images/HeroImageCurso.webp";
-import icon from "@/public/images/unitecicon.png";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { MailCheck, LockIcon } from "lucide-react";
-import Image from "next/image";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "sonner";
-import { login } from "@/lib/actions/auth-actions";
-import { InputField } from "@/components/ui/InputField";
+import LoginForm from "@/components/forms/LoginForm";
+import Logo from "@/components/navbar/Logo";
 
-const Login = () => {
-  const [loading, setLoading] = useState(false);
-  const [value, setValue] = useState<string>("");
-  const [senha, setSenha] = useState<string>("");
-  const [showNewPassword, setShowNewPassword] = useState(false);
-  const router = useRouter();
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!value || !senha) {
-      toast.error("Por favor, preencha todos os campos.");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await login(value, senha);
-      console.log("Resposta:", response);
-
-      if (response?.status === 200 || response?.status === 201) {
-        const userEmail = response?.data?.email; // Captura o e-mail do usuário
-
-        if (!userEmail) {
-          toast.error("Erro ao obter o e-mail do usuário.");
-          return;
-        }
-
-        toast.success("Login realizado com sucesso!");
-        console.log("Redirecionando para verificação...");
-
-        const params = new URLSearchParams({ email: userEmail }).toString();
-        router.push(`/auth/verificar?${params}&from=login`);
-
-        return;
-      }
-
-      if (response?.status === 400 || response?.status === 401) {
-        toast.error("Credenciais inválidas. Verifique seu usuário ou senha.");
-      } else if (response?.status === 429) {
-        toast.error(
-          "Você excedeu o limite de tentativas. Tente novamente mais tarde."
-        );
-      } else {
-        toast.error("Ocorreu um erro. Tente novamente mais tarde.");
-      }
-    } catch (error) {
-      console.error("Erro:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+// export default Login;
+export default async function LoginPage() {
   return (
-    <div className="flex items-center justify-center">
-      <section className="w-full max-w-4xl bg-white rounded-xl shadow-lg grid grid-cols-1 md:grid-cols-2">
-        <div className="hidden md:block">
-          <Image
-            src={logo}
-            alt="loginImageSide"
-            className="h-full w-full object-cover rounded-l-xl"
-          />
-        </div>
-
-        {/* Form Section */}
-        <div className="p-10 px-20 lg:p-8">
-          <div className="flex-col items-center text-center p-5 text-muted-foreground">
-            <div className="w-full h-full flex items-center justify-center">
-              <Image
-                src={icon}
-                alt="loginImage"
-                className="w-28 rounded-[100%]"
-              />
+    <main className="min-h-screen flex items-center justify-center p-4">
+      <section className="flex h-[480px] max-h-[600px] w-full max-w-4xl rounded-2xl overflow-hidden lg:-mt-10 items-center justify-center shadow-2xl">
+        <div className="w-full max-w-md h-full">
+          <div className="bg-gradient-to-r h-full w-full flex items-center justify-center from-blue-600 to-indigo-600 px-8 py-8 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="relative z-10">
+              <div className="inline-flex items-center justify-center w-24 h-24 bg-white/20 rounded-2xl mb-4 backdrop-blur-sm">
+                <Logo className="w-full h-full rounded-2xl " />
+              </div>
+              <h1 className="text-2xl font-bold text-white mb-2">UniBooks</h1>
+              <p className="text-blue-100 ">Sua biblioteca digital favorita</p>
             </div>
-            <p className="text-sm font-medium mt-3 text-[#007aff]">
-              Faça login para continuar.
-            </p>
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"></div>
+            <div className="absolute -bottom-2 -left-2 w-16 h-16 bg-white/10 rounded-full"></div>
           </div>
-          <form onSubmit={handleLogin}>
-            <div className="mb- relative">
-              <InputField
-                icon={<MailCheck size={20} />}
-                label="Insira o Seu Username"
-                placeholder="unitec"
-                type="text"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-              />
-            </div>
-            <div className="mb-4 relative">
-              <InputField
-                icon={<LockIcon size={20} />}
-                label="Senha:"
-                placeholder="********"
-                type={showNewPassword ? "text" : "password"}
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-between mb-6">
-              <Link
-                href="/recuperar-senha"
-                className="text-sm text-zinc-600 hover:text-zinc-400"
-              >
-                Esqueceu a senha?
-              </Link>
-            </div>
-            <div className="flex justify-center">
-              <button
-                type="submit"
-                className="w-1/3 h-9 flex items-center justify-center bg-[#179bd3] hover:border hover:border-[#007aff8f] hover:bg-transparent hover:text-[#007aff8f] text-white py-3 rounded-lg"
-                disabled={loading}
-              >
-                {loading ? "Carregando..." : "Entrar"}
-              </button>
-            </div>
-          </form>
         </div>
+        <LoginForm />
       </section>
-    </div>
+    </main>
   );
-};
-
-export default Login;
+}

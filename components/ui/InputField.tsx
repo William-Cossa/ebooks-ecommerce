@@ -14,16 +14,16 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "flex flex-col h-20 text-muted-foreground w-full",
+          "flex flex-col space-y-1 text-muted-foreground w-full",
           className
         )}
       >
-        {label && <Label className="text-sm mb-1 font-light">{label}</Label>}
+        {label && <Label className="text-sm font-semibold">{label}</Label>}
         <div className="relative">
           <input
             type={type}
             className={cn(
-              "flex h-10 w-full items-center pl-9 rounded-md border border-border bg-background  placeholder:text-zinc-400 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:border-none disabled:cursor-not-allowed disabled:opacity- disabled:border-none disabled:bg-transparent disabled:text-zinc-600 disabled:tracking-wide",
+              "flex h-10 w-full items-center pl-9 rounded-md border border-border bg-background  placeholder:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:border disabled:cursor-not-allowed disabled:opacity- disabled:border-none disabled:bg-transparent disabled:text-zinc-600 disabled:tracking-wide",
               `${icon ? "pl-9" : "pl-2"}`
             )}
             ref={ref}

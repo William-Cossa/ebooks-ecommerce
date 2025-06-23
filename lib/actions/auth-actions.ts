@@ -7,6 +7,25 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 import { decodeJwt } from "jose";
 
+export type LoginFormState = {
+  errors?: {
+    email?: string[];
+    password?: string[];
+  };
+  success?: boolean;
+  message?: string;
+};
+export async function loginAction(
+  prevState: LoginFormState,
+  formdata: FormData
+): Promise<LoginFormState> {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+  const email = formdata.get("email");
+  const password = formdata.get("password");
+  console.log("LOGIN FORM DATA", { email, password });
+  return "Error: login aaavav";
+}
+
 export async function createAccount(
   userName: string,
   email: string,
