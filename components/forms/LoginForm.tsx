@@ -23,7 +23,7 @@ export default function LoginForm() {
   const handleLogin = async (data: LoginSchema) => {
     try {
       const response = await login(data.email, data.password);
-      if (!response?.success) {
+      if (!response?.sucess) {
         toast.error("Erro!!!", {
           description: response?.message,
           className: "bg-red-500 text-white",
