@@ -7,3 +7,5 @@ export const loginSchema = z.object({
     .min(1, "Senha é obrigatória")
     .min(6, "Senha deve ter pelo menos 8 caracteres"),
 });
+
+export type LoginSchema = z.infer<typeof loginSchema>;

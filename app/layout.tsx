@@ -43,7 +43,7 @@ export default function RootLayout({
             <Footer />
           </CartProvider>
           {/* <Toaster /> */}
-          <Sonner />
+          <Sonner richColors />
         </OrderProvider>
       </body>
     </html>
