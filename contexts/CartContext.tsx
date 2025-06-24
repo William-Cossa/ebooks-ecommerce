@@ -63,7 +63,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
           return prevItems;
         }
         // Se for livro físico, aumentar quantidade
-        toast.success(`Quantidade de ${book.title} aumentada no carrinho!`);
+        toast.info(`Quantidade de ${book.title} aumentada no carrinho!`);
         return prevItems.map((item) =>
           item.book.id === book.id
             ? { ...item, quantity: item.quantity + 1 }
@@ -72,7 +72,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       }
 
       // Adicionar novo item
-      toast.success(`${book.title} adicionado ao carrinho!`);
+      toast.info(`${book.title} adicionado ao carrinho!`);
       return [...prevItems, { book, quantity: 1 }];
     });
   };
@@ -87,10 +87,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       const existingItem = prevItems.find((item) => item.book.id === book.id);
 
       if (existingItem) {
-        toast.success(`${book.title} removido do carrinho.`);
+        toast.warning(`${book.title} removido do carrinho.`);
         return prevItems.filter((item) => item.book.id !== book.id);
       } else {
-        toast.success(`${book.title} adicionado ao carrinho!`);
+        toast.info(`${book.title} adicionado ao carrinho!`);
         return [...prevItems, { book, quantity: 1 }];
       }
     });

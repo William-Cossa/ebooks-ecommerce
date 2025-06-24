@@ -28,7 +28,7 @@ export default function LoginForm() {
           description: response?.message,
         });
         console.log("Erro", response?.message);
-        // console.error(response?.errorMessage);
+        console.error(response?.errorMessage);
         return;
       }
       toast.success(response?.message);
