@@ -13,6 +13,9 @@ export const routes = {
   request_password_recovery: `${API_BASE_URL}/request-password-recovery`,
   reset_password: `${API_BASE_URL}/reset-password`,
 
+  //books routes
+  books: `${API_BASE_URL}/`,
+
   //payments routes
   payment_mpesa: API_MPESA,
 };

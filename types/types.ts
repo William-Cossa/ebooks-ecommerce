@@ -18,19 +18,51 @@ export interface paramsProps {
   };
 }
 
+export interface Category {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface Cover {
+  url: string;
+  id: string;
+  fileName: string;
+  originalName: string;
+  ebookId: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
+
 export interface Book {
   id: string;
   title: string;
   author: string[];
-  coverImage: string;
+  coverImage: Cover;
+  quantity?: number;
   description: string;
-  price: number;
-  rating: number;
-  genres: string[];
+  price?: number;
+  priceAfterDiscount?: number;
+  discount?: number;
+  rating?: number;
+  genres?: Category[];
+  totalReviews?: number;
   format?: string;
   pages?: number;
   publishDate: string;
-  publisher: string;
+  publisher?: {
+    id?: string;
+    name?: string;
+    email?: string;
+    phone?: string;
+  };
+  library?: {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+  };
 }
 
 export interface CartItem {
@@ -48,8 +80,9 @@ export interface UserProgress {
   lastAccessed: Date;
 }
 
-export interface ApiResponse<T> {
-  success: boolean;
-  data?: T;
-  error?: string;
+export interface ShippingOption {
+  id: string;
+  name: string;
+  price: number;
+  label?: string;
 }

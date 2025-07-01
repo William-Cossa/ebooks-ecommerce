@@ -156,5 +156,4 @@ export async function reenviarOTP(email: string) {
 
 export async function logout() {
   destroySession();
-  redirect("/");
 }
