@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <body
         // className={`flex flex-col bg-secondary w-scree ${nunito.className} ${montserrat.variable}`}
         className={`flex flex-col min-h-screen bg-secondary w-screen overflow-x-hidden`}

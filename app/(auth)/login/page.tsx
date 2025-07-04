@@ -1,7 +1,6 @@
 import LoginForm from "@/components/forms/LoginForm";
 import Logo from "@/components/navbar/Logo";
 
-// export default Login;
 export default async function LoginPage() {
   return (
     <main className="min-h-screen flex items-center justify-center p-4">

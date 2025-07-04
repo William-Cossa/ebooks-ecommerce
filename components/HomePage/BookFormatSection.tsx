@@ -5,14 +5,12 @@ import React from "react";
 function BookFormatSection() {
   return (
     <section className="">
-      <h2 className="text-2xl font-bold text-bookBlue mb-6">
-        Explore por Formato
-      </h2>
+      <h2 className="text-2xl font-bold mb-6">Explore por Formato</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="group relative overflow-hidden rounded-lg bg-bookBlue/10 p-6 transition-all hover:bg-bookBlue/20">
           <div className="flex items-center space-x-4">
             <div className="rounded-full bg-bookOrange/20 p-3">
-              <BookOpen className="h-6 w-6 text-bookOrange" />
+              <BookOpen className="h-6 w-6 text-accent" />
             </div>
             <div>
               <h3 className="text-xl font-semibold">eBooks</h3>

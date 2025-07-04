@@ -5,6 +5,7 @@ import getAllBooks, {
   getPopularBooks,
 } from "@/lib/actions/books-actions";
 import BookCarousel from "@/components/BookCarousel";
+import Container from "@/components/Container";
 
 export default async function Home() {
   try {
@@ -14,13 +15,15 @@ export default async function Home() {
     const newestBooks = await getNewestBooks();
 
     return (
-      <div className="bg-bubbles">
+      <div className="bg-secondary w-full">
         <HeroSection />
-        <main className="container flex flex-col gap-12 pb-24">
-          <BookCarousel title="Mais Populares" books={popularBooks} />
-          <BookCarousel title="Lançamentos" books={newestBooks} />
-          <BookFormatSection />
-        </main>
+        <Container>
+          <div className=" flex flex-col gap-10 p-10 pb-24">
+            <BookCarousel title="Mais Populares" books={popularBooks} />
+            <BookCarousel title="Lançamentos" books={newestBooks} />
+            <BookFormatSection />
+          </div>
+        </Container>
       </div>
     );
   } catch (error) {

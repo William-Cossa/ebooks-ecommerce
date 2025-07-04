@@ -5,12 +5,26 @@ import { Label } from "@radix-ui/react-label";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  onRightIconClick?: () => void;
   label?: string;
   errorMessage?: string;
 }
 
 const InputField = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ icon, label, errorMessage, className, type, ...props }, ref) => {
+  (
+    {
+      icon,
+      rightIcon,
+      onRightIconClick,
+      label,
+      errorMessage,
+      className,
+      type,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div
         className={cn(
@@ -23,16 +37,27 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             type={type}
             className={cn(
-              "flex h-10 w-full items-center pl-9 rounded-md border border-border bg-background  placeholder:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:border disabled:cursor-not-allowed disabled:opacity- disabled:border-none disabled:bg-transparent disabled:text-zinc-600 disabled:tracking-wide",
-              `${icon ? "pl-9" : "pl-2"}`
+              "flex h-10 w-full items-center rounded-md border border-border bg-background placeholder:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:border disabled:cursor-not-allowed disabled:opacity-50 disabled:border-none disabled:bg-transparent disabled:text-zinc-600 disabled:tracking-wide",
+              icon ? "pl-9" : "pl-3",
+              rightIcon ? "pr-10" : "pr-3"
             )}
             ref={ref}
             {...props}
           />
           {icon && (
-            <div className="absolute inset-y-0 left-2 top-1/2 transform -translate-y-1/2 text-xl cursor-pointer">
+            <div className="absolute inset-y-0 left-2 flex items-center text-muted-foreground">
               {icon}
             </div>
+          )}
+          {rightIcon && (
+            <button
+              type="button"
+              onClick={onRightIconClick}
+              className="absolute inset-y-0 right-2 flex items-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              tabIndex={-1}
+            >
+              {rightIcon}
+            </button>
           )}
         </div>
         {errorMessage && (
@@ -44,5 +69,4 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 InputField.displayName = "InputField";
-
 export { InputField };

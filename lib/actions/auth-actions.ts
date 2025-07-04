@@ -55,13 +55,11 @@ export async function verifyOTP(email: string, otp: string) {
     if (response.status === 200) {
       const token = response.data.token;
 
-      (await cookies()).set("auth_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        path: "/",
-        maxAge: 60 * 60 * 24 * 300, // 30 dias
-        sameSite: "lax",
-      });
+      const user = decodeJwt(token);
+      user.id = user.sub;
+      user.accessToken = token;
+
+      await createSessionToken(user);
     }
 
     return { data: response.data, status: response.status };
@@ -139,7 +137,7 @@ export async function login(value: string, password: string) {
   }
 }
 
-export async function reenviarOTP(email: string) {
+export async function resend_OTP(email: string) {
   try {
     const response = await axios.post(routes.resend_otp, { email });
     return { data: response.data, status: response.status };

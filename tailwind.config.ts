@@ -99,15 +99,6 @@ const config: Config = {
         bounceAndResize: "bounceAndResize 1s ease-in-out",
         bounceAndResize2: "bounceAndResize2 1s ease-in-out",
       },
-      backgroundImage: {
-        perfil: "url('../public/images/icon.ico')",
-        svg: "url('../public/images/subtle-prism.svg')",
-        fundoSenha: "url('../public/images/SenhaPic.jpg')",
-        fundolingua: "url('../public/images/IDIOMA.png')",
-        fundoLanguage: "url('../public/images/LanguageNew.jpg')",
-        membro: "url('../public/images/membroimage1.png')",
-        fale: "url('../public/images/fale.png')",
-      },
       fontFamily: {
         playfair: ["var(--font-playfair)", "serif"],
         nunito: ["var(--font-nunito)", "sans-serif"],
@@ -123,22 +114,8 @@ const config: Config = {
       large: "1400px",
       "2xl": "1536px",
     },
-    clipPath: {
-      halfClip: "polygon(0 0, 36% 0, 71% 100%, 0% 100%)",
-      hexagon: " polygon(100% 0, 100% 59%, 32% 100%, 0 100%, 0 0)",
-      halfClip2: "polygon(90% 0, 90% 65%, 0 100%, 0 100%, 0 0)",
-      halfClip3: "polygon((49% 0, 80% 100%, 0 100%, 0 100%, 0 0)",
-      halfClipMD: "polygon(49% 0, 80% 100%, 0 100%, 0 100%, 0 0)",
-      halfClipMobile: "polygon(100% 0, 100% 56%, 22% 100%, 0 100%, 0 0)",
-      "custom-shape": "polygon(0 0, 100% 0%, 100% 75%, 0% 100%)",
-      "custom-sectionlanguage": "polygon(0 0, 35% 0, 65% 100%, 0 100%)",
-      "custom-sectioncolaboradores":
-        "polygon(0 34%, 100% 0%, 100% 62%, 0% 100%);",
-      "custom-heromobile":
-        "polygon(0 0, 100% 0, 100% 20%, 100% 83%, 33% 100%, 18% 100%, 0 100%, 0% 20%);",
-    },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
 export default config;
