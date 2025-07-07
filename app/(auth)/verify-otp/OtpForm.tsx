@@ -70,7 +70,6 @@ function OtpForm() {
     if (otp.length === 6) {
       try {
         const response = await verifyOTP(email, otp);
-        console.log("Resposta da verificação:", response);
 
         if (response?.status === 200 || response?.status === 201) {
           toast.success("OTP verificado com sucesso!");

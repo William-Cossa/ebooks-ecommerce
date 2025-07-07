@@ -6,7 +6,6 @@ export default async function getAllBooks() {
     await new Promise((resolve) => setTimeout(resolve, 0));
     // const data = await response.json();
     const data = await loadBooks();
-    console.log(data);
     return { success: true, books: data };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -97,7 +96,6 @@ export async function getAllBooksTeste() {
 
     const data: Book[] = res.data;
 
-    console.log(data);
     console.log("AQUI DEVERIAM VIR DADOS");
 
     return { success: true, books: data };

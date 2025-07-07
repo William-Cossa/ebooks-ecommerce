@@ -62,7 +62,6 @@ export default function Categories() {
       query[key] = values.join(",");
     }
 
-    console.log(query);
     return query;
   };
 

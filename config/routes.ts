@@ -14,7 +14,7 @@ export const routes = {
   reset_password: `${API_BASE_URL}/reset-password`,
 
   //books routes
-  books: `${API_BASE_URL}/`,
+  books: `${API_BASE_URL}/ebooks/list`,
 
   //payments routes
   payment_mpesa: API_MPESA,

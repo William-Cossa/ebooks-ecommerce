@@ -11,7 +11,6 @@ export default async function Home() {
   try {
     const { books } = await getAllBooks();
     const popularBooks = await getPopularBooks();
-    console.log("Popilar books", popularBooks);
     const newestBooks = await getNewestBooks();
 
     return (
