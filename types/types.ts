@@ -45,8 +45,8 @@ export interface Book {
   price?: number;
   priceAfterDiscount?: number;
   discount?: number;
-  rating?: number;
-  genres?: Category[];
+  rating: number;
+  genres: Category[];
   totalReviews?: number;
   format?: string;
   pages?: number;
