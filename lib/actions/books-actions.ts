@@ -1,8 +1,9 @@
 import { Book } from "@/types/types";
 import axios from "axios";
-import { loadBooks } from "./storage-actions";
 import { routes } from "@/config/routes";
 import { getErrorMessage } from "../utils";
+import { error } from "console";
+import { get } from "http";
 
 export default async function getAllBooks() {
   try {
@@ -10,6 +11,31 @@ export default async function getAllBooks() {
     const data: Book[] = response.data;
     return { success: true, books: data };
   } catch (error: unknown) {
+    return {
+      success: false,
+      error: getErrorMessage(error),
+    };
+  }
+}
+export default async function getAllBooks() {
+  try {
+    const response = await fetch(routes.books, {
+      cache: "force-cache",
+      next: { revalidate: 60 },
+    });
+
+    if (!response.ok) {
+      return {
+        success: true,
+        error: getErrorMessage(error),
+        status: response.status,
+      };
+    }
+
+    const data: Book[] = await response.json();
+
+    return { success: true, books: data, status: response.status };
+  } catch (error: any) {
     return {
       success: false,
       error: getErrorMessage(error),
