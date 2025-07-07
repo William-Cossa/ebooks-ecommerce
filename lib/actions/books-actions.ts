@@ -7,18 +7,6 @@ import { get } from "http";
 
 export default async function getAllBooks() {
   try {
-    const response = await axios.get(routes.books);
-    const data: Book[] = response.data;
-    return { success: true, books: data };
-  } catch (error: unknown) {
-    return {
-      success: false,
-      error: getErrorMessage(error),
-    };
-  }
-}
-export default async function getAllBooks() {
-  try {
     const response = await fetch(routes.books, {
       cache: "force-cache",
       next: { revalidate: 60 },
@@ -35,7 +23,7 @@ export default async function getAllBooks() {
     const data: Book[] = await response.json();
 
     return { success: true, books: data, status: response.status };
-  } catch (error: any) {
+  } catch (error: unknown) {
     return {
       success: false,
       error: getErrorMessage(error),
