@@ -1,7 +1,8 @@
 "use client";
-import { Search } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import React, { useState } from "react";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 function SearchField() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,7 +17,10 @@ function SearchField() {
   };
 
   return (
-    <form onSubmit={handleSearch} className="relative w-[200px] lg:w-[300px]">
+    <form
+      onSubmit={handleSearch}
+      className="relative w-[200px] lg:w-[300px] space-y-2 "
+    >
       <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
         type="search"
@@ -25,6 +29,10 @@ function SearchField() {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
+      <Button type="submit" className="h-8">
+        {" "}
+        Pesquisar
+      </Button>
     </form>
   );
 }
