@@ -83,11 +83,8 @@ export async function getAllGenres(): Promise<string[]> {
   const genresSet = new Set<string>();
   currentBooks.forEach((book) => {
     book.genres.forEach((genre) => {
-      genresSet.add(genre);
+      genresSet.add(genre.name);
     });
   });
   return Array.from(genresSet).sort();
 }
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ3d3cuZWJvb2siLCJhdWQiOiJFLWJvb2sgVW5pdGVjIiwic3ViIjoiMzY0YTEzNTUtNGYzNS00OTI5LWE3MmItNTVhMjk1MGVmOTQwIiwic3RhdHVzQWNjb3VudCI6dHJ1ZSwiZW1haWwiOiJsZW9uYXJkb2J1dG5lNzhAZ21haWwuY29tIiwiaWF0IjoxNzQ3OTAzNjMyfQ.QA0oP6iIPMigqpS6ere5F-wHmlojvQ3HYyLzSBWdcoU";
