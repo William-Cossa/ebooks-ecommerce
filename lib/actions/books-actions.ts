@@ -3,7 +3,6 @@ import axios from "axios";
 import { routes } from "@/config/routes";
 import { getErrorMessage } from "../utils";
 import { error } from "console";
-import { get } from "http";
 
 export default async function getAllBooks() {
   try {
@@ -30,14 +29,21 @@ export default async function getAllBooks() {
     };
   }
 }
+export async function loadBooks(): Promise<Book[]> {
+  const result = await getAllBooks();
+  if (!result.success) {
+    throw new Error(result.error || "Erro desconhecido");
+  }
+  return result.books!;
+}
 
 export async function getBookById(id: string) {
   try {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const data = await loadBooks();
+    const { books: data } = await getAllBooks();
 
-    const book = data.find((book) => book.id === id);
+    const book = data?.find((book) => book.id === id);
 
     return { success: true, book: book };
   } catch (error: any) {
