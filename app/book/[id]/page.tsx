@@ -46,7 +46,7 @@ export default async function page({ params }: paramsProps) {
               <Image
                 width={1000}
                 height={1000}
-                src={book.coverImage}
+                src={book.cover?.url}
                 alt={`Capa de ${book.title}`}
                 className="h-full w-full object-cover"
               />

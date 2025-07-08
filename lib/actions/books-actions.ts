@@ -2,7 +2,6 @@ import { Book } from "@/types/types";
 import axios from "axios";
 import { routes } from "@/config/routes";
 import { getErrorMessage } from "../utils";
-import { error } from "console";
 
 export default async function getAllBooks() {
   try {
@@ -13,8 +12,8 @@ export default async function getAllBooks() {
 
     if (!response.ok) {
       return {
-        success: true,
-        error: getErrorMessage(error),
+        success: false,
+        error: "Erro ao carregar os livros",
         status: response.status,
       };
     }
@@ -74,7 +73,9 @@ export async function getRelatedBooks(bookId: string) {
     .filter(
       (book) =>
         book.id !== bookId &&
-        book.genres.some((genre) => currentBook.genres.includes(genre))
+        book.categories.some((category) =>
+          currentBook.categories.includes(category)
+        )
     )
     .slice(0, 4);
 }
@@ -93,7 +94,7 @@ export async function getBooksByGenre(genre: string) {
   const currentBooks = await loadBooks();
 
   return currentBooks.filter((book) =>
-    book.genres?.some((cat) =>
+    book.categories?.some((cat) =>
       cat.name.toLowerCase().includes(genre.toLowerCase())
     )
   );
@@ -102,8 +103,8 @@ export async function getAllGenres(): Promise<string[]> {
   const currentBooks = await loadBooks();
   const genresSet = new Set<string>();
   currentBooks.forEach((book) => {
-    book.genres.forEach((genre) => {
-      genresSet.add(genre.name);
+    book.categories.forEach((category) => {
+      genresSet.add(category.name);
     });
   });
   return Array.from(genresSet).sort();

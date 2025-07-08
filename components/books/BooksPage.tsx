@@ -1,16 +1,15 @@
-// app/books/page.tsx (Server Component)
 import { Suspense } from "react";
 import BookGrid from "@/components/BookGrid";
 import BooksFilters from "@/components/BooksFilters";
 import { Book } from "@/types/types";
 import Container from "../Container";
 import { loadBooks } from "@/lib/actions/storage-actions";
-import { getAllGenres } from "@/lib/actions/books-actions";
+import getAllBooks, { getAllGenres } from "@/lib/actions/books-actions";
 
 interface SearchParams {
   search?: string;
   format?: string;
-  genres?: string | string[];
+  categories?: string | string[];
 }
 
 interface BooksPageProps {
@@ -23,29 +22,37 @@ function filterBooks(books: Book[], searchParams: SearchParams): Book[] {
   // Filter by search term
   if (searchParams.search) {
     const searchTermLower = searchParams.search.toLowerCase();
-    filtered = filtered.filter(
-      (book) =>
+
+    filtered = filtered.filter((book) => {
+      const authors = Array.isArray(book.author)
+        ? book.author
+        : typeof book.author === "string"
+        ? [book.author]
+        : [];
+
+      return (
         book.title.toLowerCase().includes(searchTermLower) ||
-        book.author.some((author) =>
+        authors.some((author) =>
           author.toLowerCase().includes(searchTermLower)
         ) ||
         book.description.toLowerCase().includes(searchTermLower)
-    );
+      );
+    });
   }
 
-  // Filter by format
   if (searchParams.format) {
     filtered = filtered.filter((book) => book.format === searchParams.format);
   }
 
-  // Filter by genres (multiple selection)
-  if (searchParams.genres) {
-    const selectedGenres = Array.isArray(searchParams.genres)
-      ? searchParams.genres
-      : [searchParams.genres];
+  if (searchParams.categories) {
+    const selectedGenres = Array.isArray(searchParams.categories)
+      ? searchParams.categories
+      : [searchParams.categories];
 
     filtered = filtered.filter((book) =>
-      selectedGenres.some((genre) => book.genres.includes(genre))
+      selectedGenres.some((categoryName) =>
+        book.categories.some((cat) => cat.name === categoryName)
+      )
     );
   }
 
@@ -53,12 +60,12 @@ function filterBooks(books: Book[], searchParams: SearchParams): Book[] {
 }
 
 export default async function BooksPage({ searchParams }: BooksPageProps) {
-  const books = await loadBooks();
+  const { books } = await getAllBooks();
   const allGenres = await getAllGenres();
   const filteredBooks = filterBooks(books, searchParams);
 
   const hasActiveFilters =
-    !!searchParams.search || !!searchParams.format || !!searchParams.genres;
+    !!searchParams.search || !!searchParams.format || !!searchParams.categories;
 
   return (
     <Container>

@@ -18,7 +18,7 @@ const BookCard = async ({ book }: BookCardProps) => {
           <Image
             width={620}
             height={620}
-            src={book.coverImage}
+            src={book.cover?.url}
             alt={`Capa de ${book.title}`}
             className="w-full h-full object-cover transition-transform hover:scale-105"
             // loading="lazy"
@@ -33,11 +33,16 @@ const BookCard = async ({ book }: BookCardProps) => {
             {book?.title}
           </h3>
           <p className="text-xs text-muted-foreground mb-2 line-clamp-1">
-            {book.author?.join(", ")}
+            {Array.isArray(book.author) && book.author.length > 0
+              ? book.author.join(", ")
+              : typeof book.author === "string" &&
+                (book.author as string).trim() !== ""
+              ? book.author
+              : "Autor desconhecido"}
           </p>
           <div className="mt-auto flex items-center justify-between">
             <span className="font-medium text-sm text-primary">
-              {book.price.toFixed(2)} MT
+              {book.priceAfterDiscount.toFixed(2)} MT
             </span>
             <span className="text-[10px] px-1.5 py-0.5 bg-muted text-muted-foreground rounded">
               {book.format}

@@ -39,14 +39,14 @@ export interface Book {
   id: string;
   title: string;
   author: string[];
-  coverImage: Cover;
+  cover: Cover;
   quantity?: number;
   description: string;
-  price?: number;
-  priceAfterDiscount?: number;
-  discount?: number;
+  price: number;
+  priceAfterDiscount: number;
+  discount: number;
   rating: number;
-  genres: Category[];
+  categories: Category[];
   totalReviews?: number;
   format?: string;
   pages?: number;
@@ -71,13 +71,6 @@ export interface CartItem {
 }
 export interface BookWithContent extends Book {
   content: string | string[]; // Pode ser texto puro ou array de páginas
-}
-
-export interface UserProgress {
-  userId: string;
-  bookId: string;
-  currentPage: number;
-  lastAccessed: Date;
 }
 
 export interface ShippingOption {
