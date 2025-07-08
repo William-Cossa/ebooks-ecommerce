@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import Container from "../Container";
 import Link from "next/link";
+import Image from "next/image";
+import { Input } from "../ui/input";
 
 const CartPage: React.FC = () => {
   const {
@@ -61,7 +63,7 @@ const CartPage: React.FC = () => {
                   variant="ghost"
                   size="sm"
                   onClick={clearCart}
-                  className="text-muted-foreground hover:text-destructive"
+                  className="text-muted-foreground "
                 >
                   <X className="h-4 w-4 mr-1" />
                   Limpar carrinho
@@ -72,9 +74,11 @@ const CartPage: React.FC = () => {
                   <li key={item.book.id} className="p-4">
                     <div className="flex gap-4">
                       <Link href={`/book/${item.book.id}`} className="shrink-0">
-                        <img
+                        <Image
                           src={item.book.cover.url}
                           alt={item.book.title}
+                          width={100}
+                          height={150}
                           className="w-20 h-24 object-cover rounded"
                         />
                       </Link>
@@ -85,16 +89,21 @@ const CartPage: React.FC = () => {
                               {item.book.title}
                             </h3>
                           </Link>
-                          <button
+                          <Button
+                            variant={"outline"}
                             onClick={() => removeFromCart(item.book.id)}
-                            className="text-muted-foreground hover:text-destructive"
+                            className="text-muted-foreground "
                             aria-label="Remover item"
                           >
                             <X className="h-4 w-4" />
-                          </button>
+                          </Button>
                         </div>
                         <p className="text-sm text-muted-foreground mb-2">
-                          {item.book.author.join(", ")}
+                          {Array.isArray(item.book.author)
+                            ? item.book.author.join(", ")
+                            : typeof item.book.author === "string"
+                            ? item.book.author
+                            : "Autor desconhecido"}
                         </p>
                         <p className="text-xs px-2 py-1 bg-muted text-muted-foreground rounded-full inline-block">
                           {item.book.format === "ebook"
@@ -111,19 +120,20 @@ const CartPage: React.FC = () => {
                             </div>
                           ) : (
                             <div className="flex items-center border rounded">
-                              <button
+                              <Button
+                                variant={"ghost"}
                                 onClick={() =>
                                   updateQuantity(
                                     item.book.id,
                                     item.quantity - 1
                                   )
                                 }
-                                className="px-2 py-1 hover:bg-muted"
+                                className="px-2 py-1 hover:bg-muted rounded-none hover:text-muted-foreground"
                                 aria-label="Diminuir quantidade"
                               >
                                 <Minus className="h-4 w-4" />
-                              </button>
-                              <input
+                              </Button>
+                              <Input
                                 type="number"
                                 min="1"
                                 value={item.quantity}
@@ -133,20 +143,21 @@ const CartPage: React.FC = () => {
                                     updateQuantity(item.book.id, value);
                                   }
                                 }}
-                                className="w-12 text-center py-1 border-x"
+                                className="w-12 text-center py-1 border-x pr-1 pl-4 rounded-none"
                               />
-                              <button
+                              <Button
+                                variant="ghost"
                                 onClick={() =>
                                   updateQuantity(
                                     item.book.id,
                                     item.quantity + 1
                                   )
                                 }
-                                className="px-2 py-1 hover:bg-muted"
+                                className="px-2 py-1 hover:bg-muted rounded-none hover:text-muted-foreground"
                                 aria-label="Aumentar quantidade"
                               >
                                 <Plus className="h-4 w-4" />
-                              </button>
+                              </Button>
                             </div>
                           )}
                           <div className="font-medium">

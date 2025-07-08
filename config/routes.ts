@@ -17,5 +17,8 @@ export const routes = {
   books: `${API_BASE_URL}/ebooks/list`,
 
   //payments routes
+  deliveries: `${API_BASE_URL}/deliveries`,
   payment_mpesa: API_MPESA,
+  calculate_price: `${API_BASE_URL}/deliveries/calculate-price`,
+  buyebook: `${API_BASE_URL}/buyebook`,
 };

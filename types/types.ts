@@ -34,6 +34,11 @@ export interface Cover {
   updatedAt: string;
   deletedAt: string | null;
 }
+export type DeliveryFee = {
+  id: string;
+  province: string;
+  price: string;
+};
 
 export interface Book {
   id: string;

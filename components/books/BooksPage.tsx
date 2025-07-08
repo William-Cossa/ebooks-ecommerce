@@ -3,7 +3,6 @@ import BookGrid from "@/components/BookGrid";
 import BooksFilters from "@/components/BooksFilters";
 import { Book } from "@/types/types";
 import Container from "../Container";
-import { loadBooks } from "@/lib/actions/storage-actions";
 import getAllBooks, { getAllGenres } from "@/lib/actions/books-actions";
 
 interface SearchParams {

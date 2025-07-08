@@ -6,7 +6,6 @@ import { getErrorMessage } from "../utils";
 export default async function getAllBooks() {
   try {
     const response = await fetch(routes.books, {
-      cache: "force-cache",
       next: { revalidate: 60 },
     });
 
