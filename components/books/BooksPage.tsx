@@ -19,7 +19,6 @@ interface BooksPageProps {
 function filterBooks(books: Book[], searchParams: SearchParams): Book[] {
   let filtered = [...books];
 
-  // Filter by search term
   if (searchParams.search) {
     const searchTermLower = searchParams.search.toLowerCase();
 
@@ -62,7 +61,7 @@ function filterBooks(books: Book[], searchParams: SearchParams): Book[] {
 export default async function BooksPage({ searchParams }: BooksPageProps) {
   const { books } = await getAllBooks();
   const allGenres = await getAllGenres();
-  const filteredBooks = filterBooks(books, searchParams);
+  const filteredBooks = filterBooks(books!, searchParams);
 
   const hasActiveFilters =
     !!searchParams.search || !!searchParams.format || !!searchParams.categories;

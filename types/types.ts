@@ -44,7 +44,7 @@ export interface Book {
   description: string;
   price: number;
   priceAfterDiscount: number;
-  discount: number;
+  discountPercentage: number;
   rating: number;
   categories: Category[];
   totalReviews?: number;

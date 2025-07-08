@@ -68,27 +68,45 @@ export async function getRelatedBooks(bookId: string) {
   const currentBooks = await loadBooks();
   const currentBook = currentBooks.find((book) => book.id === bookId);
   if (!currentBook) return [];
-  // Encontrar livros com gêneros similares
-  return currentBooks
-    .filter(
-      (book) =>
-        book.id !== bookId &&
-        book.categories.some((category) =>
-          currentBook.categories.includes(category)
-        )
-    )
-    .slice(0, 4);
+
+  const currentCategoryIds = currentBook.categories.map((cat) => cat.id);
+
+  return currentBooks.filter(
+    (book) =>
+      book.id !== bookId &&
+      book.categories.some((category) =>
+        currentCategoryIds.includes(category.id)
+      )
+  );
 }
+
 export async function getBooksByAuthor(
-  authorName: string,
+  authorList: string[] = [],
   excludeBookId?: string
 ) {
   const currentBooks = await loadBooks();
-  return currentBooks.filter(
-    (book) =>
-      book.author.includes(authorName) &&
-      (!excludeBookId || book.id !== excludeBookId)
-  );
+
+  const normalizedAuthorList = authorList
+    .filter((a) => typeof a === "string")
+    .map((a) => a.trim().toLowerCase());
+
+  return currentBooks.filter((book) => {
+    const authors = Array.isArray(book.author)
+      ? book.author
+      : typeof book.author === "string"
+      ? [book.author]
+      : [];
+
+    const normalizedBookAuthors = authors
+      .filter((a) => typeof a === "string")
+      .map((a) => a.trim().toLowerCase());
+
+    const hasCommonAuthor = normalizedBookAuthors.some((a) =>
+      normalizedAuthorList.includes(a)
+    );
+
+    return hasCommonAuthor && (!excludeBookId || book.id !== excludeBookId);
+  });
 }
 export async function getBooksByGenre(genre: string) {
   const currentBooks = await loadBooks();

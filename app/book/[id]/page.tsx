@@ -19,7 +19,13 @@ export default async function page({ params }: paramsProps) {
   const { book } = await getBookById(id);
 
   const relatedBooks = await getRelatedBooks(id);
-  const authorBooks = await getBooksByAuthor(book?.author[0]!, id);
+  const authorsToSearch = Array.isArray(book?.author)
+    ? book.author
+    : typeof book?.author === "string"
+    ? [book.author]
+    : [];
+
+  const authorBooks = await getBooksByAuthor(authorsToSearch, id);
 
   if (!book) {
     return (
@@ -69,27 +75,42 @@ export default async function page({ params }: paramsProps) {
             <div className="space-y-1">
               <div className="text-lg">
                 por{" "}
-                {book?.author.map((author, index) => (
-                  <React.Fragment key={author}>
-                    <Link
-                      href={`/books?search=${encodeURIComponent(author)}`}
-                      className="text-bookBlue hover:underline"
-                    >
-                      {author}
-                    </Link>
-                    {index < book.author.length - 1 ? ", " : ""}
-                  </React.Fragment>
-                ))}
+                {(() => {
+                  const authors = Array.isArray(book?.author)
+                    ? book.author
+                    : typeof book?.author === "string" &&
+                      (book.author as string).trim() !== ""
+                    ? [book.author]
+                    : [];
+
+                  return authors.length > 0 ? (
+                    authors.map((author, index) => (
+                      <div key={author}>
+                        <Link
+                          href={`/books?search=${encodeURIComponent(author)}`}
+                          className="text-bookBlue hover:underline"
+                        >
+                          {author}
+                        </Link>
+                        {index < authors.length - 1 ? ", " : ""}
+                      </div>
+                    ))
+                  ) : (
+                    <span className="text-muted-foreground">
+                      Autor desconhecido
+                    </span>
+                  );
+                })()}
               </div>
               <p className="text-sm text-muted-foreground">
-                Editora: {book.publisher} | Publicado em:{" "}
+                Editora: {book.publisher?.name} | Publicado em:{" "}
                 {new Date(book.publishDate).toLocaleDateString("pt-BR")}
               </p>
             </div>
 
             <div className="flex items-center space-x-2">
               <span className="text-2xl font-bold text-bookBlue">
-                MT {book?.price.toFixed(2)}
+                MT {book.priceAfterDiscount.toFixed(2)}
               </span>
               <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full">
                 {book?.format === "ebook" ? "eBook" : "Livro Físico"}
@@ -105,13 +126,15 @@ export default async function page({ params }: paramsProps) {
             <div className="pt-4">
               <h3 className="text-lg font-semibold mb-2">Gêneros</h3>
               <div className="flex flex-wrap gap-2">
-                {book.genres.map((genre) => (
+                {book.categories.map((category) => (
                   <Link
-                    key={genre}
-                    href={`/books?genre=${encodeURIComponent(genre)}`}
+                    key={category.name}
+                    href={`/books?categories=${encodeURIComponent(
+                      category.name
+                    )}`}
                     className="px-3 py-1 bg-muted hover:bg-muted/80 rounded-full text-sm"
                   >
-                    {genre}
+                    {category.name}
                   </Link>
                 ))}
               </div>
@@ -129,6 +152,11 @@ export default async function page({ params }: paramsProps) {
         </div>
       </div>
 
+      {authorBooks.length > 0 && (
+        <section className="my-12">
+          <BookCarousel title="Livros do mesmo autor" books={authorBooks} />
+        </section>
+      )}
       {relatedBooks.length > 0 && (
         <section className="my-12">
           <BookCarousel title="Livros Relacionados" books={relatedBooks} />

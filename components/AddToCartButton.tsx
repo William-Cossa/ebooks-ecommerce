@@ -25,22 +25,32 @@ export function AddToCartButton({ book }: CartListButtonProps) {
   };
 
   return (
+    // <Button
+    //   onClick={handletoggleCartList}
+    //   className={`hover:bg-primary/90 p-2 transition-all w-full ${
+    //     iscartListed ? "bg-destructive hover:bg-red-600" : ""
+    //   }`}
+    //   aria-label={
+    //     iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"
+    //   }
+    // >
+    //   <ShoppingCart
+    //     className={`
+    //       w-6 h-6
+    //       ${iscartListed ? "fill-white " : " hover:te"}
+    //     `}
+    //   />
+    //   {iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"}
+    // </Button>
+
     <Button
       onClick={handletoggleCartList}
-      className={`hover:bg-primary/90 p-2 transition-all w-full ${
-        iscartListed ? "bg-destructive hover:bg-red-600" : ""
-      }`}
-      aria-label={
-        iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"
-      }
+      variant={"ghost"}
+      className="border hover:borde hover:border-zinc-40 hover:bg-primary/5 hover:text-none  "
     >
       <ShoppingCart
-        className={`
-          w-6 h-6 
-          ${iscartListed ? "fill-white " : " hover:te"}
-        `}
+        className={`w-8 h-8 ${iscartListed ? "fill-primary " : "fill-white"}`}
       />
-      {iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"}
     </Button>
   );
 }

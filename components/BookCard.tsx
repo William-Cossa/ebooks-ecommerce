@@ -5,12 +5,14 @@ import { Book } from "@/types/types";
 import Link from "next/link";
 import Image from "next/image";
 import { AddToCartButton } from "./AddToCartButton";
+import { Button } from "./ui/button";
 
 interface BookCardProps {
   book: Book;
 }
 
 const BookCard = async ({ book }: BookCardProps) => {
+  const hasDiscount = book.discountPercentage > 0;
   return (
     <div className="book-card flex flex-col h-full rounded-lg overflow-hidden border border-border bg-card shadow-sm hover:shadow-md transition-shadow pb-1">
       <Link href={`/book/${book.id}`} className="flex-grow">
@@ -29,7 +31,7 @@ const BookCard = async ({ book }: BookCardProps) => {
             <Star className="w-3.5 h-3.5 fill-current" />
             <span className="ml-1 text-xs">{book.rating.toFixed(1)}</span>
           </div>
-          <h3 className="font-semibold text-base mb-1 line-clamp-2 leading-tight">
+          <h3 className="font-semibold min-h-8 text-base mb-1 line-clamp-2 leading-tight">
             {book?.title}
           </h3>
           <p className="text-xs text-muted-foreground mb-2 line-clamp-1">
@@ -40,17 +42,31 @@ const BookCard = async ({ book }: BookCardProps) => {
               ? book.author
               : "Autor desconhecido"}
           </p>
+
           <div className="mt-auto flex items-center justify-between">
-            <span className="font-medium text-sm text-primary">
-              {book.priceAfterDiscount.toFixed(2)} MT
-            </span>
+            {hasDiscount ? (
+              <div className="space-x-1">
+                <span className="font-medium text-sm text-primary">
+                  {book?.priceAfterDiscount.toFixed(2)} MT
+                </span>
+                <span className="font-medium text-xs text-zinc-400 line-through">
+                  {Number(book?.price).toFixed(2)} MT
+                </span>
+              </div>
+            ) : (
+              <span className="font-medium text-sm text-primary">
+                {book?.priceAfterDiscount.toFixed(2)} MT
+              </span>
+            )}
+
             <span className="text-[10px] px-1.5 py-0.5 bg-muted text-muted-foreground rounded">
               {book.format}
             </span>
           </div>
         </div>
       </Link>
-      <div className="p-3 pt-0">
+      <div className="p-3 pt-0 flex justify-between items-center gap-3">
+        <Button className="w-full">Comprar</Button>
         <AddToCartButton book={book} />
       </div>
     </div>

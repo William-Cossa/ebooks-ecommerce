@@ -15,7 +15,7 @@ interface BooksFiltersProps {
   searchParams: {
     search?: string;
     format?: string;
-    genres?: string | string[];
+    categories?: string | string[];
   };
   hasActiveFilters: boolean;
 }
@@ -59,10 +59,10 @@ export default function BooksFilters({
   };
 
   const handleGenreChange = (genre: string, checked: boolean) => {
-    const currentGenres = searchParams.genres
-      ? Array.isArray(searchParams.genres)
-        ? searchParams.genres
-        : [searchParams.genres]
+    const currentGenres = searchParams.categories
+      ? Array.isArray(searchParams.categories)
+        ? searchParams.categories
+        : [searchParams.categories]
       : [];
 
     let newGenres: string[];
@@ -72,14 +72,14 @@ export default function BooksFilters({
       newGenres = currentGenres.filter((g) => g !== genre);
     }
 
-    updateSearchParams("genres", newGenres.length > 0 ? newGenres : null);
+    updateSearchParams("categories", newGenres.length > 0 ? newGenres : null);
   };
 
   const isGenreSelected = (genre: string): boolean => {
-    if (!searchParams.genres) return false;
-    const selectedGenres = Array.isArray(searchParams.genres)
-      ? searchParams.genres
-      : [searchParams.genres];
+    if (!searchParams.categories) return false;
+    const selectedGenres = Array.isArray(searchParams.categories)
+      ? searchParams.categories
+      : [searchParams.categories];
     return selectedGenres.includes(genre);
   };
 

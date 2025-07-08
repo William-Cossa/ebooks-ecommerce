@@ -73,7 +73,7 @@ const CartPage: React.FC = () => {
                     <div className="flex gap-4">
                       <Link href={`/book/${item.book.id}`} className="shrink-0">
                         <img
-                          src={item.book.coverImage}
+                          src={item.book.cover.url}
                           alt={item.book.title}
                           className="w-20 h-24 object-cover rounded"
                         />
