@@ -13,14 +13,14 @@ export async function getAllDeliveries() {
     if (!response.ok) {
       return {
         success: false,
-        error: "Erro ao carregar os livros",
+        error: "Erro ao carregar localizações de entrega",
         status: response.status,
       };
     }
 
     const data: DeliveryFee[] = await response.json();
 
-    return { success: true, books: data, status: response.status };
+    return { success: true, deliviryFees: data, status: response.status };
   } catch (error: unknown) {
     return {
       success: false,
