@@ -50,7 +50,7 @@ const CartPage: React.FC = () => {
 
   return (
     <Container>
-      <div className="max-w-6xl mx-auto py-8">
+      <div className="">
         <h1 className="text-2xl font-bold mb-8">Seu Carrinho</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
@@ -185,10 +185,6 @@ const CartPage: React.FC = () => {
                   </span>
                   <span>{total.toFixed(2)} MT</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span>Entrega</span>
-                  <span className="text-primary">200.00 MT</span>
-                </div>
 
                 <div className="pt-4 border-t">
                   <div className="flex justify-between font-medium">
@@ -207,7 +203,7 @@ const CartPage: React.FC = () => {
 
                 <div className="flex items-start gap-2 text-xs text-muted-foreground mt-4">
                   <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
-                  <p>.</p>
+                  <p> Frete e descontos serão calculados no checkout.</p>
                 </div>
               </div>
             </div>

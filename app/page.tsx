@@ -17,7 +17,7 @@ export default async function Home() {
       <div className="bg-secondary w-full">
         <HeroSection />
         <Container>
-          <div className=" flex flex-col gap-10 p-10 pb-24">
+          <div className=" flex flex-col gap-10 pb-24">
             <BookCarousel title="Mais Populares" books={popularBooks} />
             <BookCarousel title="Lançamentos" books={newestBooks} />
             <BookFormatSection />

@@ -1,8 +1,13 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect } from "react";
-
-import { useOrders } from "./OrderContext";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+} from "react";
 import { toast } from "sonner";
+import { useOrders } from "./OrderContext";
 import { Book, CartItem } from "@/types/types";
 
 interface CartContextType {
@@ -32,19 +37,26 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isInitialized, setIsInitialized] = useState(false); // <- NOVO
   const { addOrder } = useOrders();
 
-  // Carregar itens do localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
+    console.log("Carregando do localStorage:", savedCart);
     if (savedCart) {
       setItems(JSON.parse(savedCart));
     }
+    setIsInitialized(true); // <- MARCAR COMO CARREGADO
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(items));
-  }, [items]);
+    if (isInitialized) {
+      console.log("Salvando no localStorage:", items);
+      localStorage.setItem("cart", JSON.stringify(items));
+    }
+  }, [items, isInitialized]);
+
+  // ... o restante do código (addToCart, removeFromCart, etc) permanece igual ...
 
   const isCartListed = (bookId: string): boolean => {
     return items.some((item) => item.book.id === bookId);

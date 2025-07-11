@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Button } from "./ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { Book, CartItem } from "@/types/types";
@@ -12,13 +12,12 @@ interface CartListButtonProps {
 
 export function AddToCartButton({ book }: CartListButtonProps) {
   const { isCartListed, toggleCartItem } = useCart();
-  const [iscartListed, setIscartListed] = useState(isCartListed(book.id));
+  const iscartListed = isCartListed(book.id);
   const isEbook = book.format?.toLowerCase() !== "livro";
 
   const handletoggleCartList = () => {
     try {
       toggleCartItem(book);
-      setIscartListed(!iscartListed);
     } catch (error) {
       console.error("Erro ao atualizar cartList", error);
     }

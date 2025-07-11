@@ -4,7 +4,7 @@ import { Check, Info } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { ShippingSection } from "./ShippingSection";
 
-export default function CheckoutPage() {
+export default function checkout() {
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -63,7 +63,7 @@ export default function CheckoutPage() {
   const total = subtotal + shippingCost + estimatedTaxes;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Forms */}

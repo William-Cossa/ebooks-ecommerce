@@ -19,6 +19,7 @@ export async function getAllDeliveries() {
     }
 
     const data: DeliveryFee[] = await response.json();
+    data.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
 
     return { success: true, deliviryFees: data, status: response.status };
   } catch (error: unknown) {

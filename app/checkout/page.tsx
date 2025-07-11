@@ -1,4 +1,4 @@
-import CheckoutPage from "@/components/checkout/checkout";
+import CheckoutPage from "@/components/checkout/CheckoutPage";
 import React from "react";
 
 function Checkout() {
