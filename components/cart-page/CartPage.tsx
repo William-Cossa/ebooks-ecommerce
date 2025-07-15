@@ -39,7 +39,7 @@ const CartPage: React.FC = () => {
             <p className="text-muted-foreground mb-6">
               Adicione alguns livros incríveis para continuar.
             </p>
-            <Button asChild className="bg-blue-600 hover:bg-blue-700">
+            <Button asChild>
               <Link href="/books">Explorar Catálogo</Link>
             </Button>
           </div>
@@ -186,20 +186,19 @@ const CartPage: React.FC = () => {
                   <span>{total.toFixed(2)} MT</span>
                 </div>
 
-                <div className="pt-4 border-t">
+                <div className="py-4 border-t">
                   <div className="flex justify-between font-medium">
                     <span>Total</span>
                     <span>{total.toFixed(2)} MT</span>
                   </div>
                 </div>
 
-                <Button
-                  onClick={checkout}
-                  className="w-full mt-4 bg-blue-600 hover:bg-blue-700"
-                >
-                  Finalizar Pedido
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link href="/checkout" className="">
+                  <Button>
+                    Finalizar Pedido
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
 
                 <div className="flex items-start gap-2 text-xs text-muted-foreground mt-4">
                   <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />

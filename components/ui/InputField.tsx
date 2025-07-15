@@ -37,7 +37,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             type={type}
             className={cn(
-              "flex h-10 w-full items-center rounded-md border border-border bg-background placeholder:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:border disabled:cursor-not-allowed disabled:opacity-50 disabled:border-none disabled:bg-transparent disabled:text-zinc-600 disabled:tracking-wide",
+              "flex h-10 w-full items-center rounded-md border border-border bg-background  placeholder:text-sm placeholder:text-muted-foreground/70 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:border disabled:cursor-not-allowed disabled:opacity-50 disabled:border-none disabled:bg-transparent disabled:text-zinc-600 disabled:tracking-wide",
               icon ? "pl-9" : "pl-3",
               rightIcon ? "pr-10" : "pr-3"
             )}

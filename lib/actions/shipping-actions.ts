@@ -4,7 +4,7 @@
 import { routes } from "@/config/routes";
 
 interface CalculateShippingRequest {
-  province: string;
+  id: string;
   quantity: number;
 }
 
@@ -18,13 +18,13 @@ export async function calculateShipping(
   data: CalculateShippingRequest
 ): Promise<CalculateShippingResponse> {
   try {
-    if (!data.province || !data.quantity || data.quantity <= 0) {
+    if (!data.id || !data.quantity || data.quantity <= 0) {
       throw new Error(
         "Dados inválidos: província e quantidade são obrigatórios"
       );
     }
 
-    const cacheKey = `${data.province}-${data.quantity}`;
+    const cacheKey = `${data.id}-${data.quantity}`;
     const cached = shippingCache.get(cacheKey);
     if (cached) {
       return cached;

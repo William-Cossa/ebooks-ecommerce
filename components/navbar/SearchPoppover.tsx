@@ -40,7 +40,7 @@ export function SearchPopover() {
           </Button>
         </motion.span>
       </MorphingPopoverTrigger>
-      <MorphingPopoverContent className="rounded-lg mt-32 z-50  border-zinc-950/10 bg-white p0 shadow-[0_9px_9px_0px_rgba(0,0,0,0.01),_0_2px_5px_0px_rgba(0,0,0,0.06)] dark:bg-zinc-700">
+      <MorphingPopoverContent className="rounded-lg mt-32 -right-10 z-50  border-zinc-950/10 bg-white p0 shadow-[0_9px_9px_0px_rgba(0,0,0,0.01),_0_2px_5px_0px_rgba(0,0,0,0.06)] dark:bg-zinc-700">
         {/* <div className="text-sm"> */}
         <span className="text-sm text-muted-foreground">Pesquisar:</span>
         <SearchField />

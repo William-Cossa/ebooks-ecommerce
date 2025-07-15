@@ -3,13 +3,14 @@ import BookCarousel from "@/components/BookCarousel";
 import BookDetails from "@/components/booksDetails/BookDetails";
 import ButtonVoltar from "@/components/ButtonVoltar";
 import Container from "@/components/Container";
+import { Button } from "@/components/ui/button";
 import {
   getBookById,
   getBooksByAuthor,
   getRelatedBooks,
 } from "@/lib/actions/books-actions";
 import { paramsProps } from "@/types/types";
-import { Star } from "lucide-react";
+import { ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -143,7 +144,13 @@ export default async function page({ params }: paramsProps) {
               <p className="text-base/relaxed">{book?.description}</p>
             </div>
 
-            <div className="pt-6 w-1/2">
+            <div className="pt-6  flex gap-4">
+              <Link href="/cart">
+                <Button className="flex items-center gap-2">
+                  <ShoppingCart className="h-5 w-5" />
+                  Comprar Agora
+                </Button>
+              </Link>
               <AddToCartButton book={book} />
             </div>
           </div>

@@ -74,9 +74,6 @@ export interface CartItem {
   book: Book;
   quantity: number;
 }
-export interface BookWithContent extends Book {
-  content: string | string[]; // Pode ser texto puro ou array de páginas
-}
 
 export interface ShippingOption {
   id: string;

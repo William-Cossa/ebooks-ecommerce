@@ -66,7 +66,9 @@ const BookCard = async ({ book }: BookCardProps) => {
         </div>
       </Link>
       <div className="p-3 pt-0 flex justify-between items-center gap-3">
-        <Button className="w-full">Comprar</Button>
+        <Link href="/cart" className="w-full">
+          <Button className="w-full">Comprar</Button>
+        </Link>
         <AddToCartButton book={book} />
       </div>
     </div>

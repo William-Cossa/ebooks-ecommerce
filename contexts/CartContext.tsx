@@ -42,21 +42,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
-    console.log("Carregando do localStorage:", savedCart);
     if (savedCart) {
       setItems(JSON.parse(savedCart));
     }
-    setIsInitialized(true); // <- MARCAR COMO CARREGADO
+    setIsInitialized(true);
   }, []);
 
   useEffect(() => {
     if (isInitialized) {
-      console.log("Salvando no localStorage:", items);
       localStorage.setItem("cart", JSON.stringify(items));
     }
   }, [items, isInitialized]);
-
-  // ... o restante do código (addToCart, removeFromCart, etc) permanece igual ...
 
   const isCartListed = (bookId: string): boolean => {
     return items.some((item) => item.book.id === bookId);
