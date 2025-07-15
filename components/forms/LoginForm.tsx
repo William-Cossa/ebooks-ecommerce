@@ -10,6 +10,7 @@ import { Separator } from "../ui/separator";
 import { SubmitButton } from "../SubmitButton";
 import { LoginSchema, loginSchema } from "@/lib/validations/LoginSchema";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const {
@@ -19,6 +20,9 @@ export default function LoginForm() {
   } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
   });
+  const redirectUrl =
+    new URL(window.location.href).searchParams.get("redirect") || "/cursos";
+  const router = useRouter();
 
   const handleLogin = async (data: LoginSchema) => {
     try {
@@ -32,6 +36,7 @@ export default function LoginForm() {
         return;
       }
       toast.success(response?.message);
+      router.push(redirectUrl);
     } catch (error) {
       console.error("Erro inesperado ao tentar fazer login.", error);
     }
