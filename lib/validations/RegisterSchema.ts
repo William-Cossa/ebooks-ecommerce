@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const registerSchema = z
   .object({
-    firstName: z
+    name: z
       .string()
       .min(2, "Nome deve ter pelo menos 2 caracteres")
       .max(50, "Nome deve ter no máximo 50 caracteres")
@@ -16,7 +16,7 @@ export const registerSchema = z
 
     email: z.string().email("Email inválido").min(1, "Email é obrigatório"),
 
-    phone: z
+    telephone: z
       .string()
       .min(9, "Contacto deve ter pelo menos 9 dígitos")
       .max(15, "Contacto deve ter no máximo 15 caracteres")
@@ -33,13 +33,13 @@ export const registerSchema = z
         "Senha deve conter pelo menos: 1 letra minúscula, 1 maiúscula e 1 número"
       ),
 
-    confirmPassword: z.string().min(1, "Confirmação de senha é obrigatória"),
+    passwordConfirm: z.string().min(1, "Confirmação de senha é obrigatória"),
 
     acceptTerms: z.boolean().refine((val) => val === true, {
       message: "Você deve aceitar os termos e condições",
     }),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.password === data.passwordConfirm, {
     message: "As senhas não coincidem",
     path: ["confirmPassword"],
   });

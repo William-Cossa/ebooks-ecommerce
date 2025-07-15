@@ -9,6 +9,7 @@ import { decodeJwt } from "jose";
 import { loginSchema } from "../validations/LoginSchema";
 import { parseZodErrors } from "../helpers/zod-helpers";
 import { getErrorMessage } from "../utils";
+import { registerSchema, RegisterSchema } from "../validations/RegisterSchema";
 
 export type LoginFormState = {
   errors?: Record<string, string[]>;
@@ -17,30 +18,43 @@ export type LoginFormState = {
   message?: string;
 };
 
-export async function createAccount(
-  userName: string,
-  email: string,
-  password: string,
-  passwordConfirm: string
-) {
+export async function createAccount(data: RegisterSchema) {
+  const result = registerSchema.safeParse(data);
+  if (!result.success) {
+    return {
+      success: false,
+      errors: parseZodErrors(result.error),
+      message: "Preencha os campos correctamente e tente novamente.",
+    };
+  }
+
   try {
-    const response = await axios.post(routes.create_account, {
-      userName,
-      email,
-      password,
-      passwordConfirm,
-    });
+    const response = await axios.post(routes.create_account, data);
 
     return { data: response.data, status: response.status };
   } catch (error) {
+    console.error("Erro na resposta:", error);
     if (axios.isAxiosError(error)) {
-      console.error("Erro na resposta:", error.response?.data);
-      console.error("Status:", error.response?.status);
+      const status = error.response?.status;
+      if (status === 400 || status === 401) {
+        return {
+          sucess: false,
+          status: status,
+          message:
+            "Credenciais inválidas. Por favor, verifique seu e-mail ou senha.",
+        };
+      }
 
-      throw error.response?.data?.message || "Email e/ou Nome existente";
-    } else {
-      console.error("Erro desconhecido:", error);
+      return {
+        success: false,
+        status: status ?? 500,
+        errorMessage: getErrorMessage(error) || "Erro de autenticação.",
+      };
     }
+    return {
+      success: false,
+      errorMessage: getErrorMessage(error),
+    };
   }
 }
 

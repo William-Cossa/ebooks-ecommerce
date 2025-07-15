@@ -28,22 +28,18 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
-  // Observa o campo de senha para mostrar o campo de confirmação
   const password = watch("password");
   const shouldShowConfirmPassword = password && password.length > 6;
 
   const handleRegister = async (data: RegisterSchema) => {
     try {
-      // Combina nome e apelido para criar o nome completo
-      const fullName = `${data.firstName} ${data.lastName}`.trim();
-
-      const response = await createAccount(fullName, data.email, data.password);
+      const response = await createAccount(data);
       if (!response?.success) {
         toast.error("Erro!!!", {
           description: response?.message,
         });
         console.log("Erro", response?.message);
-        console.error(response?.errorMessage);
+        console.error(response?.errors);
         return;
       }
       toast.success(response?.message);
@@ -72,8 +68,8 @@ export default function RegisterForm() {
               label="Nome:"
               placeholder="Seu nome"
               type="text"
-              {...register("firstName")}
-              errorMessage={errors.firstName?.message}
+              {...register("name")}
+              errorMessage={errors.name?.message}
               className="text-sm sm:text-base"
             />
 
@@ -104,8 +100,8 @@ export default function RegisterForm() {
               label="Contacto:"
               placeholder="+258 XX XXX XXXX"
               type="tel"
-              {...register("phone")}
-              errorMessage={errors.phone?.message}
+              {...register("telephone")}
+              errorMessage={errors.telephone?.message}
               className="text-sm sm:text-base"
             />
           </div>
@@ -145,8 +141,8 @@ export default function RegisterForm() {
                 label="Confirmar senha:"
                 placeholder="Confirme sua senha"
                 type={showConfirmPassword ? "text" : "password"}
-                {...register("confirmPassword")}
-                errorMessage={errors.confirmPassword?.message}
+                {...register("passwordConfirm")}
+                errorMessage={errors.passwordConfirm?.message}
                 className="text-sm sm:text-base"
               />
             </div>

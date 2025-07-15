@@ -7,7 +7,7 @@ export const routes = {
 
   //auth routes
   login: `${API_BASE_URL}/loginuser`,
-  create_account: "`${API_BASE_URL}/signupuser`",
+  create_account: `${API_BASE_URL}/signupuser`,
   verify_otp: `${API_BASE_URL}/confirmsignupuser`,
   resend_otp: `${API_BASE_URL}/resendotpuser`,
   request_password_recovery: `${API_BASE_URL}/request-password-recovery`,
