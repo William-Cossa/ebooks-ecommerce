@@ -10,6 +10,7 @@ import SearchField from "./SearchField";
 import CartListButton from "../CartListButton";
 import MenuButton from "./MenuButton";
 import { SearchPopover } from "./SearchPoppover";
+import AuthButtons from "./AuthButtons";
 
 function Navbar() {
   return (
@@ -24,6 +25,7 @@ function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
+            <AuthButtons />
             <SearchPopover />
             <CartListButton />
             {/* <CartListDropdown /> */}
