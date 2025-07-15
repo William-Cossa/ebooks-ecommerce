@@ -14,10 +14,12 @@ import {
 } from "@/lib/validations/RegisterSchema";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -40,16 +42,18 @@ export default function RegisterForm() {
         });
         console.log("Erro", response?.message);
         console.error(response?.errors);
+        console.error(response?.errorMessage);
         return;
       }
       toast.success(response?.message);
+      router.push(`/verify-otp?email=${encodeURIComponent(data.email)}`);
     } catch (error) {
       console.error("Erro inesperado ao tentar fazer cadastro.", error);
     }
   };
 
   return (
-    <div className="bg-background/80 backdrop-blur-xl w-full max-w-lg lg:max-w-xl xl:max-w-2xl h-full shadow-2xl border border-white/20 py-4 overflow-y-auto scrollbar-hide">
+    <div className="bg-background/80 backdrop-blur-xl w-full max-w-lg lg:max-w-xl xl:max-w-2xl h-full shadow-2xl border border-white/20 py-4 lg:overflow-y-auto scrollbar-hide">
       <div className="p-4 sm:p-6 lg:p-8 lg:pt-2 2xl:pt-8">
         <div className="text-center mb-4 sm:mb-6">
           <h2 className="text-xl sm:text-2xl font-bold">Crie sua conta</h2>

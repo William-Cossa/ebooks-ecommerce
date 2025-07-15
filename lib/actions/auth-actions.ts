@@ -30,15 +30,16 @@ export async function createAccount(data: RegisterSchema) {
 
   try {
     const response = await axios.post(routes.create_account, data);
-
-    return { data: response.data, status: response.status };
+    if (response.status === 200 || response.status === 201) {
+      return { data: response.data, status: response.status, success: true };
+    }
   } catch (error) {
     console.error("Erro na resposta:", error);
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
       if (status === 400 || status === 401) {
         return {
-          sucess: false,
+          success: false,
           status: status,
           message:
             "Credenciais inválidas. Por favor, verifique seu e-mail ou senha.",

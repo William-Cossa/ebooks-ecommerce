@@ -49,10 +49,6 @@ function OtpForm() {
 
       if (response.status === 200) {
         setVerified(true);
-        setTimeout(() => {
-          // Redirecionar para dashboard ou página principal
-          console.log("Redirecionando...");
-        }, 2000);
       } else {
         setError("Código incorreto. Tente novamente!");
         setOtp("");

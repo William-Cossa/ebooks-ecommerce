@@ -1,8 +1,15 @@
 import { ArrowLeft, Mail, RefreshCw, Shield, CheckCircle2 } from "lucide-react";
 import OtpForm from "../(auth)/verify-otp/OtpForm";
 
-export default function ModernOTPVerification() {
-  const email = "user@exemplo.com";
+interface VerifyOTPProps {
+  searchParams: {
+    email?: string;
+  };
+}
+export default function ModernOTPVerification({
+  searchParams,
+}: VerifyOTPProps) {
+  const email = searchParams.email || "";
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
