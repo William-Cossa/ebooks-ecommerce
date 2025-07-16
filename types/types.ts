@@ -81,3 +81,16 @@ export interface ShippingOption {
   price: number;
   label?: string;
 }
+export interface UserSession {
+  accessToken: string;
+  iss?: string;
+  aud?: string;
+  sub?: number;
+  email?: string;
+  telephone?: number;
+  statusAccount?: boolean;
+  name?: string;
+  lastname?: string;
+  id?: number;
+  exp?: string;
+}

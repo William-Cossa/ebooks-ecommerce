@@ -42,7 +42,6 @@ export default function RootLayout({
             <div className="flex-grow">{children}</div>
             <Footer />
           </CartProvider>
-          {/* <Toaster /> */}
           <Sonner richColors />
         </OrderProvider>
       </body>

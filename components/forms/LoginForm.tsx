@@ -21,7 +21,7 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
   const redirectUrl =
-    new URL(window.location.href).searchParams.get("redirect") || "/cursos";
+    new URL(window.location.href).searchParams.get("redirect") || "/books";
   const router = useRouter();
 
   const handleLogin = async (data: LoginSchema) => {

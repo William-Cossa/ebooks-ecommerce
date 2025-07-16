@@ -1,3 +1,4 @@
+import { UserSession } from "@/types/types";
 import * as jose from "jose";
 import { cookies } from "next/headers";
 
@@ -50,5 +51,17 @@ const AuthServices = {
   openSessionToken,
   isValidSession,
 };
+export async function getUser() {
+  try {
+    const token = cookies().get("session")?.value;
 
+    if (token && (await isValidSession())) {
+      return jose.decodeJwt(token) as UserSession;
+    }
+    return null;
+  } catch (error) {
+    console.error("Erro ao buscar usuário:", error);
+    return null;
+  }
+}
 export default AuthServices;
