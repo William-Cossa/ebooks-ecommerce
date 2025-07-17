@@ -11,8 +11,14 @@ import CartListButton from "../CartListButton";
 import MenuButton from "./MenuButton";
 import { SearchPopover } from "./SearchPoppover";
 import AuthButtons from "./AuthButtons";
+import { UserSession } from "@/types/types";
+import PerfilUser from "./PerfilUser";
 
-function Navbar() {
+interface NavbarProps {
+  user: UserSession | null;
+}
+
+function Navbar({ user }: NavbarProps) {
   return (
     <header className="sticky font-playfair top-0 z-50 border-b bg-card shadow-sm">
       <div className="max-w-7xl mx-auto md:px-4 lg:px-0  w-full  ">
@@ -25,9 +31,18 @@ function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <AuthButtons />
+            <div className={`${user ? "hidden" : "flex"}`}>
+              <AuthButtons />
+            </div>
             <SearchPopover />
             <CartListButton />
+            <div
+              className={`${
+                user ? "flex" : "hidden"
+              } aspect-square rounded-full `}
+            >
+              <PerfilUser user={user} />
+            </div>
             {/* <CartListDropdown /> */}
           </div>
 

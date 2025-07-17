@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { CartProvider } from "@/contexts/CartContext";
 import { OrderProvider } from "@/contexts/OrderContext";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import { getUser } from "@/services/auth-services";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -25,11 +26,12 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUser();
   return (
     <html lang="en" className="light">
       <body
@@ -38,7 +40,7 @@ export default function RootLayout({
       >
         <OrderProvider>
           <CartProvider>
-            <Navbar />
+            <Navbar user={user} />
             <div className="flex-grow">{children}</div>
             <Footer />
           </CartProvider>

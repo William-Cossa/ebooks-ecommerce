@@ -8,43 +8,41 @@ import { LogoutButton } from "../LogoutButton";
 
 interface props {
   user: any;
-  status: string;
+  status?: string;
 }
-export default function PerfilUser({ status, user }: props) {
+export default function PerfilUser({ user }: props) {
   const pathname = usePathname();
-  const nome = user?.nome;
-  const apelido = user?.apelido;
-  const alunoId = user?.id;
+
   const [imageUrl, setImageUrl] = useState<string>();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  function criarSiglas(nome: string, apelido: string): string {
-    if (!nome || !apelido) return "";
-    const inicialNome = nome.charAt(0).toUpperCase();
-    const inicialApelido = apelido.charAt(0).toUpperCase();
+  function criarSiglas(name: string, lastName: string): string {
+    if (!name || !lastName) return "";
+    const inicialNome = name.charAt(0).toUpperCase();
+    const inicialApelido = lastName.charAt(0).toUpperCase();
     return inicialNome + inicialApelido;
   }
 
-  useEffect(() => {
-    const fetchAlunoData = async () => {
-      if (status === "authenticated" && alunoId) {
-        const token = user?.accessToken;
-        try {
-          const alunoData = await getAlunoById(Number(alunoId));
-          if (alunoData?.FotoAlunos && alunoData.FotoAlunos.length > 0) {
-            setImageUrl(alunoData.FotoAlunos[0].url);
-          }
-        } catch (error) {
-          console.error("Erro ao buscar dados do aluno:", error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const fetchAlunoData = async () => {
+  //     if (status === "authenticated" && userId) {
+  //       const token = user?.accessToken;
+  //       try {
+  //         const userData = await l ;
+  //         if (userData?.FotoAlunos && userData.FotoAlunos.length > 0) {
+  //           setImageUrl(userData.FotoAlunos[0].url);
+  //         }
+  //       } catch (error) {
+  //         console.error("Erro ao buscar aluno", error);
+  //       }
+  //     }
+  //   };
 
-    fetchAlunoData();
-  }, [status, alunoId]);
+  //   fetchAlunoData();
+  // }, [status, userId]);
 
-  const siglas = criarSiglas(nome!, apelido!);
+  const siglas = criarSiglas(user?.name, user?.lastName);
 
   const handleToggleDropdown = () => {
     if (pathname !== "/user/perfil") {
@@ -79,10 +77,10 @@ export default function PerfilUser({ status, user }: props) {
     <div className="relative">
       <div
         onClick={handleToggleDropdown}
-        className="cursor-pointer text-muted-foreground bg-border p-0.5 py-0 h-[6.3vh] rounded-full flex gap-3 items-center"
+        className="cursor-pointer text-primary bg-border p-0.5 py-0  rounded-full flex gap-3 items-center"
       >
-        <span className="text-sm pl-3 hidden md:block">Meu Perfil</span>
-        <Avatar className="h-[6.3vh] w-[6.3vh]">
+        {/* <span className="text-sm pl-3 hidden md:block">Meu Perfil</span> */}
+        <Avatar className="h-4/5 aspect-square">
           <AvatarImage src={imageUrl || " "} />
           <AvatarFallback>{siglas}</AvatarFallback>
         </Avatar>
