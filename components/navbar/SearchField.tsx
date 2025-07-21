@@ -19,9 +19,9 @@ function SearchField() {
   return (
     <form
       onSubmit={handleSearch}
-      className="relative w-[200px] lg:w-[300px] space-y-2 "
+      className="relative w-[200px] lg:w-[300px] space-y-2"
     >
-      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+      <Search className="absolute left-2.5 flex-1 transform top-2.5 translate-y-2/3 lg:translate-y-0.5 h-4 w-4 text-muted-foreground" />
       <Input
         type="search"
         placeholder="Buscar livros..."
