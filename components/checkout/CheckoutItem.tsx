@@ -9,7 +9,7 @@ import { ScrollArea } from "../ui/scroll-area";
 function CheckoutItem() {
   const { items: cartItems, removeFromCart } = useCart();
   return (
-    <ScrollArea className="max-h-72 border-b">
+    <ScrollArea className="max-h-72">
       <ul className="space-y-4 w-full h-full  p-4 ">
         {cartItems.map((item) => (
           <li

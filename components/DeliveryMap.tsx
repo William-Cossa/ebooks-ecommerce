@@ -9,7 +9,7 @@ import {
 
 const mapContainerStyle = {
   width: "100%",
-  height: "500px",
+  height: "396px",
 };
 
 const center = { lat: -25.9553, lng: 32.5892 };
@@ -35,12 +35,7 @@ const options = {
 
 const DeliveryMap = () => {
   return (
-    <div className="bg-gray-50 rounded-lg p-6">
-      <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-        <Map className="h-5 w-5 text-green-600" />
-        Mapa Detalhado - Avenidas e Pontos de Referência
-      </h3>
-
+    <div className="bg-gray-50 rounded-lg border border-gray-300 ">
       <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API || ""}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}

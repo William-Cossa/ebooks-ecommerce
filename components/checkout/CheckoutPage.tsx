@@ -143,7 +143,7 @@ function CheckoutPage() {
 
           {/* Resumo do pedido */}
           <div className="lg:sticky lg:top-16 lg:self-start">
-            <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
+            <div className="bg-gray-100 rounded-lg p-6 shadow-sm">
               <h2 className="text-lg font-medium mb-4">Resumo do pedido</h2>
 
               <div className="space-y-4">

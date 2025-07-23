@@ -53,7 +53,7 @@ function DeliveryForm({ onDeliveryChange, deliveryData }: DeliveryFormProps) {
   };
 
   return (
-    <Card className="w-full bg-gray-400">
+    <Card className="w-full ">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text">
           <MapPin className="h-5 w-5" />

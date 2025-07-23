@@ -1,7 +1,10 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { MapPin, CreditCard, User, Phone, Mail, Map } from "lucide-react";
-import { deliveryBoundaryPoints, deliveryPolygon } from "./zonas";
+import {
+  deliveryBoundaryPoints,
+  deliveryPolygon,
+} from "@/config/google-maps-zones";
 
 const PaymentPage = () => {
   const [formData, setFormData] = useState({
