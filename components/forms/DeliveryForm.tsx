@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Phone, MapPin, User, Mail } from "lucide-react";
 import { ShippingSection } from "../checkout/ShippingSection";
 import { InputField } from "../ui/InputField";
+import Link from "next/link";
 
 export interface DeliveryData {
   contactInfo: {
@@ -122,7 +123,12 @@ function DeliveryForm({ onDeliveryChange, deliveryData }: DeliveryFormProps) {
 
         {/* Shipping Options */}
         <div className="space-y-4">
-          <h3 className="text-lg font-medium text-gray-900">Forma de Frete</h3>
+          <div>
+            <h3 className="text-lg font-medium text-gray-900">
+              Forma de Frete
+            </h3>
+            <Link href={"/free-delivery-zones"}></Link>
+          </div>
           <ShippingSection
             onShippingSelect={handleShippingSelect}
             selectedShipping={deliveryData.selectedShipping}
