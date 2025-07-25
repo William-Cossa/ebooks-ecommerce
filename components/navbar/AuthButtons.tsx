@@ -9,9 +9,7 @@ function AuthButtons() {
         <Button>Entrar</Button>
       </Link>
       <Link href="/register">
-        <Button variant="outline" className="hover:bg-primary">
-          Registar
-        </Button>
+        <Button variant="outline">Registar</Button>
       </Link>
     </div>
   );

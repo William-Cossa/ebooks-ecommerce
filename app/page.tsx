@@ -14,7 +14,7 @@ export default async function Home() {
     const newestBooks = await getNewestBooks();
 
     return (
-      <div className="bg-secondary w-full">
+      <div className=" w-full">
         <HeroSection />
         <Container>
           <div className=" flex flex-col gap-10 pb-24">
