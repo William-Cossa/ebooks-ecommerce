@@ -1,6 +1,6 @@
 // components/BooksFilters.tsx (Client Component)
 "use client";
-
+import { useDebouncedCallback } from "use-debounce";
 import { useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Filter, Search, X } from "lucide-react";
+import { useHandleSearch } from "@/hooks/useHandleSearch";
 
 interface BooksFiltersProps {
   allGenres: string[];
@@ -48,7 +49,7 @@ export default function BooksFilters({
     }
 
     startTransition(() => {
-      router.push(`/books?${params.toString()}`);
+      router.push(`/books?${params.toString()}`, { scroll: false });
     });
   };
 
@@ -83,9 +84,11 @@ export default function BooksFilters({
     return selectedGenres.includes(genre);
   };
 
-  const handleSearchChange = (value: string) => {
-    updateSearchParams("search", value || null);
-  };
+  const searchBooks = useHandleSearch();
+
+  const debounce = useDebouncedCallback((value: string) => {
+    searchBooks(value);
+  }, 500);
 
   const handleFormatChange = (value: string) => {
     updateSearchParams("format", value || null);
@@ -123,7 +126,7 @@ export default function BooksFilters({
                     placeholder="Buscar..."
                     className="pl-8 pr-4"
                     defaultValue={searchParams.search || ""}
-                    onChange={(e) => handleSearchChange(e.target.value)}
+                    onChange={(e) => debounce(e.target.value)}
                     disabled={isPending}
                   />
                 </div>
@@ -238,7 +241,7 @@ export default function BooksFilters({
                   placeholder="Buscar..."
                   className="pl-8 pr-4"
                   defaultValue={searchParams.search || ""}
-                  onChange={(e) => handleSearchChange(e.target.value)}
+                  onChange={(e) => debounce(e.target.value)}
                   disabled={isPending}
                 />
               </div>

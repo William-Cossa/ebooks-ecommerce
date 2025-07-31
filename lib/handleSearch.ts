@@ -2,7 +2,7 @@
 
 import { ReadonlyURLSearchParams } from "next/navigation";
 
-export function handleSearchCursos(
+export function handleSearchBooks(
   value: string,
   searchParams: ReadonlyURLSearchParams,
   router: ReturnType<typeof import("next/navigation").useRouter>,
