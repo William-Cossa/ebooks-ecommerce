@@ -1,3 +1,4 @@
+"use server";
 import { Book } from "@/types/types";
 import axios from "axios";
 import { routes } from "@/config/routes";

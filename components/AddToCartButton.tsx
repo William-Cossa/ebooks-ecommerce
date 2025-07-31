@@ -44,8 +44,8 @@ export function AddToCartButton({ book }: CartListButtonProps) {
 
     <Button
       onClick={handletoggleCartList}
-      variant={"ghost"}
-      className="border hover:borde hover:border-zinc-40 hover:bg-primary/5 hover:text-none  "
+      variant={"outline"}
+      className="hover:text-none "
     >
       <ShoppingCart
         className={`w-8 h-8 ${iscartListed ? "fill-primary " : "fill-white"}`}
