@@ -44,17 +44,17 @@ const BookCard = async ({ book }: BookCardProps) => {
           </p>
 
           <div className="mt-auto flex items-center justify-between">
-            {hasDiscount ? (
+            {!hasDiscount ? (
               <div className="space-x-1">
-                <span className="font-medium text-sm text-primary">
+                <span className="font-medium text-sm ">
                   {book?.priceAfterDiscount.toFixed(2)} MT
                 </span>
-                <span className="font-medium text-xs text-zinc-400 line-through">
+                <span className="font-medium text-xs text-muted-foreground line-through">
                   {Number(book?.price).toFixed(2)} MT
                 </span>
               </div>
             ) : (
-              <span className="font-medium text-sm text-primary">
+              <span className="font-medium text-sm ">
                 {book?.priceAfterDiscount.toFixed(2)} MT
               </span>
             )}
