@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AddToCartButton } from "./AddToCartButton";
 import { Button } from "./ui/button";
+import { BuyButton } from "./BuyButton";
 
 interface BookCardProps {
   book: Book;
@@ -66,9 +67,7 @@ const BookCard = async ({ book }: BookCardProps) => {
         </div>
       </Link>
       <div className="p-3 pt-0 flex justify-between items-center gap-3">
-        <Link href="/cart" className="w-full">
-          <Button className="w-full">Comprar</Button>
-        </Link>
+        <BuyButton book={book} />
         <AddToCartButton book={book} />
       </div>
     </div>

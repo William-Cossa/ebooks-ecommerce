@@ -13,6 +13,7 @@ import { Book, CartItem } from "@/types/types";
 interface CartContextType {
   items: CartItem[];
   addToCart: (book: Book) => void;
+  addToCartAndShop: (book: Book) => void;
   removeFromCart: (bookId: string) => void;
   toggleCartItem: (book: Book) => void;
   isCartListed: (bookId: string) => boolean;
@@ -85,6 +86,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
+  const addToCartAndShop = (book: Book) => {
+    setItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.book.id === book.id);
+      if (existingItem) {
+        return prevItems;
+      }
+
+      return [...prevItems, { book, quantity: 1 }];
+    });
+  };
   const removeFromCart = (bookId: string) => {
     setItems((prevItems) =>
       prevItems.filter((item) => item.book.id !== bookId)
@@ -168,6 +179,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         total,
         totalItems,
         checkout,
+        addToCartAndShop,
       }}
     >
       {children}
