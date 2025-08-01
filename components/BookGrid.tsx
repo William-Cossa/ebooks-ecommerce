@@ -20,7 +20,10 @@ const BookGrid: React.FC<BookGridProps> = ({ books, columns = 4 }) => {
 
   if (books.length === 0) {
     return (
-      <div className="flex justify-center items-center py-12">
+      <div
+        key={Math.random()}
+        className="flex justify-center items-center py-12"
+      >
         <p className="text-muted-foreground">Nenhum livro encontrado</p>
       </div>
     );

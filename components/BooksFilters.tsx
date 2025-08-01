@@ -1,4 +1,3 @@
-// components/BooksFilters.tsx (Client Component)
 "use client";
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useTransition } from "react";
@@ -10,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Filter, Search, X } from "lucide-react";
 import { useHandleSearch } from "@/hooks/useHandleSearch";
+import { ScrollArea } from "./ui/scroll-area";
 
 interface BooksFiltersProps {
   allGenres: string[];
@@ -31,14 +31,21 @@ export default function BooksFilters({
   const [isPending, startTransition] = useTransition();
   const [isFilterVisible, setIsFilterVisible] = useState(false);
 
+  const [genreSearch, setGenreSearch] = useState("");
+  const debouncedGenreSearch = useDebouncedCallback((value: string) => {
+    setGenreSearch(value.toLowerCase());
+  }, 300);
+
+  const filteredGenres = allGenres.filter((genre) =>
+    genre.toLowerCase().includes(genreSearch)
+  );
+
   const updateSearchParams = (key: string, value: string | string[] | null) => {
     const params = new URLSearchParams(currentSearchParams.toString());
 
     if (value) {
-      // Remove existing params for this key
       params.delete(key);
 
-      // Add new values
       if (Array.isArray(value)) {
         value.forEach((v) => params.append(key, v));
       } else {
@@ -98,7 +105,7 @@ export default function BooksFilters({
     <>
       {/* Filters - Desktop */}
       <aside className="hidden md:block w-64 shrink-0">
-        <div className="sticky top-20 space-y-6">
+        <div className="sticky top-5 space-y-6">
           <div>
             <h2 className="font-semibold mb-4">Filtros</h2>
 
@@ -107,7 +114,7 @@ export default function BooksFilters({
                 variant="ghost"
                 size="sm"
                 onClick={resetFilters}
-                className="mb-4 text-muted-foreground"
+                className="mb-2 text-muted-foreground"
                 disabled={isPending}
               >
                 <X className="h-4 w-4 mr-1" />
@@ -115,7 +122,7 @@ export default function BooksFilters({
               </Button>
             )}
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <Label htmlFor="search">Busca</Label>
                 <div className="relative mt-1">
@@ -124,7 +131,7 @@ export default function BooksFilters({
                     id="search"
                     type="search"
                     placeholder="Buscar..."
-                    className="pl-8 pr-4"
+                    className="pl-8 pr-4 h-9"
                     defaultValue={searchParams.search || ""}
                     onChange={(e) => debounce(e.target.value)}
                     disabled={isPending}
@@ -137,10 +144,10 @@ export default function BooksFilters({
                 <RadioGroup
                   value={searchParams.format || ""}
                   onValueChange={handleFormatChange}
-                  className="mt-2 space-y-2"
+                  className="mt-1 items-center text-sm"
                   disabled={isPending}
                 >
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-1">
                     <RadioGroupItem value="" id="format-all" />
                     <Label
                       htmlFor="format-all"
@@ -149,7 +156,7 @@ export default function BooksFilters({
                       Todos
                     </Label>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-1">
                     <RadioGroupItem value="ebook" id="format-ebook" />
                     <Label
                       htmlFor="format-ebook"
@@ -158,7 +165,7 @@ export default function BooksFilters({
                       eBook
                     </Label>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-1">
                     <RadioGroupItem value="livro" id="format-livro" />
                     <Label
                       htmlFor="format-livro"
@@ -172,26 +179,40 @@ export default function BooksFilters({
 
               <div>
                 <Label>Gêneros</Label>
-                <div className="mt-2 space-y-2">
-                  {allGenres.map((genre) => (
-                    <div key={genre} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`genre-${genre}`}
-                        checked={isGenreSelected(genre)}
-                        onCheckedChange={(checked) =>
-                          handleGenreChange(genre, checked as boolean)
-                        }
-                        disabled={isPending}
-                      />
-                      <Label
-                        htmlFor={`genre-${genre}`}
-                        className="font-normal cursor-pointer"
+                <Input
+                  placeholder="Buscar gênero..."
+                  onChange={(e) => debouncedGenreSearch(e.target.value)}
+                  className="mb-2 h-8 "
+                  disabled={isPending}
+                />
+                <ScrollArea className="h-[calc(100vh-360px)]  pr-2 space-y-2  ">
+                  {filteredGenres.length > 0 ? (
+                    filteredGenres.map((genre, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center space-x-2 mb-2 first:mt-1 last:mb-10"
                       >
-                        {genre}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
+                        <Checkbox
+                          id={`genre-${genre}`}
+                          checked={isGenreSelected(genre)}
+                          onCheckedChange={(checked) =>
+                            handleGenreChange(genre, checked as boolean)
+                          }
+                        />
+                        <Label
+                          htmlFor={`genre-${genre}`}
+                          className="font-normal cursor-pointer"
+                        >
+                          {genre}
+                        </Label>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-sm text-muted-foreground">
+                      Nenhum gênero encontrado
+                    </p>
+                  )}
+                </ScrollArea>
               </div>
             </div>
           </div>
