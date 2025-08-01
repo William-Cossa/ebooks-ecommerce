@@ -44,7 +44,7 @@ const BookCard = async ({ book }: BookCardProps) => {
           </p>
 
           <div className="mt-auto flex items-center justify-between">
-            {!hasDiscount ? (
+            {hasDiscount ? (
               <div className="space-x-1">
                 <span className="font-medium text-sm ">
                   {book?.priceAfterDiscount.toFixed(2)} MT
