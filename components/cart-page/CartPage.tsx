@@ -121,14 +121,14 @@ const CartPage: React.FC = () => {
                           ) : (
                             <div className="flex items-center border rounded">
                               <Button
-                                variant={"ghost"}
+                                variant={"outline"}
                                 onClick={() =>
                                   updateQuantity(
                                     item.book.id,
                                     item.quantity - 1
                                   )
                                 }
-                                className="px-2 py-1 hover:bg-muted rounded-none hover:text-muted-foreground"
+                                className="px-2 py-1 border-r-0 rounded-r-none"
                                 aria-label="Diminuir quantidade"
                               >
                                 <Minus className="h-4 w-4" />
@@ -146,14 +146,14 @@ const CartPage: React.FC = () => {
                                 className="w-12 text-center py-1 border-x pr-1 pl-4 rounded-none"
                               />
                               <Button
-                                variant="ghost"
+                                variant="outline"
                                 onClick={() =>
                                   updateQuantity(
                                     item.book.id,
                                     item.quantity + 1
                                   )
                                 }
-                                className="px-2 py-1 hover:bg-muted rounded-none hover:text-muted-foreground"
+                                className="px-2 py-1 border-l-0 rounded-l-none"
                                 aria-label="Aumentar quantidade"
                               >
                                 <Plus className="h-4 w-4" />

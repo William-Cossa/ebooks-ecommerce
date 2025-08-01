@@ -34,7 +34,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 dark:from-slate-600 dark:via-slate-900 overflow-hidden">
       <div className="container mx-auto px-8 lg:px-20 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center  overflow-hidden">
           <motion.div
@@ -43,10 +43,10 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8  "
           >
-            <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold  leading-tight">
               Descubra um Mundo de Conhecimento no Seu Bolso
             </h1>
-            <p className=" text-lg md:text-xl text-gray-700 leading-relaxed">
+            <p className=" text-lg md:text-xl text-card-foreground leading-relaxed">
               Mergulhe em uma extensa coleção de livros digitais. Leia, aprenda
               e cresça com nossa seleção selecionada de e-books disponíveis a
               qualquer hora e em qualquer lugar.
@@ -55,7 +55,7 @@ const HeroSection = () => {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="flex items-center space-x-2 text-gray-700"
+                  className="flex items-center space-x-2 text-card-foreground"
                 >
                   <span className="text-primary text-lg lg:text-xl">
                     {feature.icon}
@@ -82,7 +82,6 @@ const HeroSection = () => {
                 src={heroImage}
                 alt="Digital Reading Experience"
                 className="absolute top-0 right-0 w-4/5 h-4/5 object-cover object-left rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300"
-                // loading="lazy"
               />
 
               <Image

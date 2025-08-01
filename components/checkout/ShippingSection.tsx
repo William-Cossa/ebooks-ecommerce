@@ -37,13 +37,13 @@ export const ShippingSection = ({
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div
             key={i}
-            className="flex items-center justify-between p-3 border border-gray-200 rounded-lg animate-pulse"
+            className="flex items-center justify-between p-3 border rounded-lg animate-pulse"
           >
             <div className="flex items-center">
-              <div className="w-4 h-4 bg-gray-200 rounded-full mr-3"></div>
-              <div className="w-24 h-4 bg-gray-200 rounded"></div>
+              <div className="w-4 h-4 bg-muted-foreground rounded-full mr-3"></div>
+              <div className="w-24 h-4 bg-muted-foreground rounded"></div>
             </div>
-            <div className="w-16 h-4 bg-gray-200 rounded"></div>
+            <div className="w-16 h-4 bg-muted-foreground rounded"></div>
           </div>
         ))}
       </div>
@@ -61,17 +61,13 @@ export const ShippingSection = ({
         {shippingOptions.map((option) => (
           <div
             key={option.id}
-            className="flex items-center justify-between px-3 border first:rounded-t-lg first:border-t last:rounded-b-lg border-t-0 hover:bg-gray-50 transition-colors"
+            className="flex items-center justify-between px-3 border first:rounded-t-lg first:border-t last:rounded-b-lg border-t-0 hover:bg-muted-foreground transition-colors"
           >
             <div className="flex items-center gap-3 w-full">
-              <RadioGroupItem
-                value={option.id}
-                id={option.id}
-                className="border-gray-300"
-              />
+              <RadioGroupItem value={option.id} id={option.id} className="" />
               <Label
                 htmlFor={option.id}
-                className="text-sm text-gray-800 cursor-pointer w-full py-3 font-medium"
+                className="text-sm  cursor-pointer w-full py-3 font-medium"
               >
                 {option.province}
               </Label>
@@ -88,7 +84,7 @@ export const ShippingSection = ({
       </RadioGroup>
 
       {shippingOptions.length === 0 && !isLoading && (
-        <p className="text-sm text-gray-500 text-center py-4">
+        <p className="text-sm text-center py-4">
           Nenhuma opção de frete disponível
         </p>
       )}

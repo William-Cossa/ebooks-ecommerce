@@ -35,7 +35,9 @@ export function AddToCartButton({
         className="hover:text-none "
       >
         <ShoppingCart
-          className={`w-8 h-8 ${iscartListed ? "fill-primary " : "fill-white"}`}
+          className={`w-8 h-8 ${
+            iscartListed ? "fill-primary dark:text-primary " : "fill-white"
+          }`}
         />
       </Button>
     );

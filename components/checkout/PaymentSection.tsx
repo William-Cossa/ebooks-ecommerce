@@ -73,14 +73,12 @@ export const PaymentSection = ({
             </TabsList>
 
             <TabsContent value="M-pesa" className="space-y-4">
-              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="p-4  rounded-lg border border-green-200">
                 <div className="flex items-center gap-2 mb-2">
-                  <Smartphone className="h-5 w-5 text-green-600" />
-                  <h4 className="font-medium text-green-800">
-                    Pagamento via M-Pesa
-                  </h4>
+                  <Smartphone className="h-5 w-5 " />
+                  <h4 className="font-">Pagamento via M-Pesa</h4>
                 </div>
-                <p className="text-sm text-green-700">
+                <p className="text-sm">
                   Pague de forma rápida e segura usando sua conta M-Pesa
                 </p>
               </div>
@@ -99,14 +97,14 @@ export const PaymentSection = ({
                     required
                   />
                 </div>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   Número M-Pesa onde será enviado o pedido de pagamento
                 </p>
               </div>
             </TabsContent>
 
             <TabsContent value="cartao" className="space-y-4">
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <div className="p-4  rounded-lg border ">
                 <div className="flex items-center gap-2 mb-2">
                   <CreditCard className="h-5 w-5 text-blue-600" />
                   <h4 className="font-medium text-blue-800">
@@ -121,7 +119,7 @@ export const PaymentSection = ({
               <div className="space-y-2">
                 <Label htmlFor="card-phone">Número de Telefone *</Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
                   <Input
                     id="card-phone"
                     type="tel"
@@ -140,10 +138,10 @@ export const PaymentSection = ({
           </Tabs>
 
           {/* Order Summary */}
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className=" p-4 rounded-lg">
             <div className="flex justify-between items-center text-lg font-semibold">
               <span>Total a pagar:</span>
-              <span className="text-green-600">{total.toFixed(2)} MT</span>
+              <span className="font-bold">{total.toFixed(2)} MT</span>
             </div>
           </div>
 

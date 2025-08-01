@@ -106,7 +106,7 @@ function DeliveryForm({ onDeliveryChange, deliveryData }: DeliveryFormProps) {
           <div className="space-y-2">
             <Label htmlFor="delivery-location">Localização de Entrega *</Label>
             <div className="relative">
-              <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+              <MapPin className="absolute left-3 top-3 h-4 w-4 " />
               <Textarea
                 id="delivery-location"
                 value={deliveryData.deliveryLocation}
@@ -116,7 +116,7 @@ function DeliveryForm({ onDeliveryChange, deliveryData }: DeliveryFormProps) {
                 required
               />
             </div>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Seja específico para facilitar a entrega
             </p>
           </div>

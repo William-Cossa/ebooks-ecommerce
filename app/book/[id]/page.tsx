@@ -4,6 +4,7 @@ import BookDetails from "@/components/booksDetails/BookDetails";
 import ButtonVoltar from "@/components/ButtonVoltar";
 import { BuyButton } from "@/components/BuyButton";
 import Container from "@/components/Container";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   getBookById,
@@ -72,8 +73,8 @@ export default async function page({ params }: paramsProps) {
 
             <h1 className="text-3xl md:text-4xl font-bold">{book.title}</h1>
 
-            <div className="space-y-1">
-              <div className="text-lg">
+            <div className="space-y-1 ">
+              <div className="text-lg text-secondary-foreground ">
                 por{" "}
                 {(() => {
                   const authors = Array.isArray(book?.author)
@@ -88,7 +89,7 @@ export default async function page({ params }: paramsProps) {
                       <div key={author}>
                         <Link
                           href={`/books?search=${encodeURIComponent(author)}`}
-                          className="text-bookBlue hover:underline"
+                          className="dark:text-muted-foreground font-semibold hover:underline"
                         >
                           {author}
                         </Link>
@@ -109,12 +110,12 @@ export default async function page({ params }: paramsProps) {
             </div>
 
             <div className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-bookBlue">
+              <span className="text-2xl font-bold ">
                 MT {book.priceAfterDiscount.toFixed(2)}
               </span>
-              <span className="px-2 py-1 text-xs bg-muted text-muted-foreground rounded-full">
+              <Badge variant={"secondary"} className="px-2 py-1 text-xs ">
                 {book?.format === "ebook" ? "eBook" : "Livro Físico"}
-              </span>
+              </Badge>
             </div>
 
             {book.format === "livro" && (

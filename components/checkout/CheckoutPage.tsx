@@ -118,11 +118,9 @@ function CheckoutPage() {
   }, [items]);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className=" min-h-screen">
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
-          Finalizar Compra
-        </h1>
+        <h1 className="text-3xl font-bold mb-8">Finalizar Compra</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
@@ -142,13 +140,13 @@ function CheckoutPage() {
 
           {/* Resumo do pedido */}
           <div className="lg:sticky lg:top-16 lg:self-start">
-            <div className="bg-gray-100 rounded-lg p-6 shadow-sm">
+            <div className="bg-card rounded-lg p-6 shadow-sm">
               <h2 className="text-lg font-medium mb-4">Resumo do pedido</h2>
 
               <div className="space-y-4">
                 <CheckoutItem />
 
-                <div className="border-t pt-4 space-y-2">
+                <div className="border-t  pt-4 space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Subtotal</span>
                     <span>{total.toFixed(2)} MT</span>
@@ -169,9 +167,9 @@ function CheckoutPage() {
 
                   <div className="flex justify-between text-lg font-bold pt-2 border-t">
                     <span>Total</span>
-                    <span className="text-green-600">
+                    <span className="">
                       {isCalculatingShipping ? (
-                        <div className="w-20 h-5 bg-gray-200 rounded animate-pulse"></div>
+                        <div className="w-20 h-5 rounded animate-pulse"></div>
                       ) : deliveryData.selectedShipping ? (
                         `${(total + shippingCost).toFixed(2)} MT`
                       ) : (
@@ -182,7 +180,7 @@ function CheckoutPage() {
                 </div>
 
                 {/* Informações adicionais */}
-                <div className="text-xs text-gray-500 pt-4 border-t">
+                <div className="text-xs text-muted-foreground pt-4 border-t">
                   <p>✓ Entrega segura e rastreável</p>
                   <p>✓ Suporte 24/7 disponível</p>
                   <p>✓ Garantia de satisfação</p>
