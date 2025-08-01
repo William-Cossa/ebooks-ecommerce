@@ -24,7 +24,6 @@ const BookCard = async ({ book }: BookCardProps) => {
             src={book.cover?.url}
             alt={`Capa de ${book.title}`}
             className="w-full h-full object-cover transition-transform hover:scale-105"
-            // loading="lazy"
           />
         </div>
         <div className="p-3 flex flex-col flex-grow">

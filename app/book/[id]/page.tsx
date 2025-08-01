@@ -2,6 +2,7 @@ import { AddToCartButton } from "@/components/AddToCartButton";
 import BookCarousel from "@/components/BookCarousel";
 import BookDetails from "@/components/booksDetails/BookDetails";
 import ButtonVoltar from "@/components/ButtonVoltar";
+import { BuyButton } from "@/components/BuyButton";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import {
@@ -144,14 +145,9 @@ export default async function page({ params }: paramsProps) {
               <p className="text-base/relaxed">{book?.description}</p>
             </div>
 
-            <div className="pt-6  flex gap-4">
-              <Link href="/cart">
-                <Button className="flex items-center gap-2">
-                  <ShoppingCart className="h-5 w-5" />
-                  Comprar Agora
-                </Button>
-              </Link>
-              <AddToCartButton book={book} />
+            <div className="pt-6  flex gap-4 w-2/4">
+              <BuyButton book={book} label="Comprar agora" />
+              <AddToCartButton book={book} isCartIcon={false} />
             </div>
           </div>
         </div>

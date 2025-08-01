@@ -8,9 +8,13 @@ import { Book, CartItem } from "@/types/types";
 
 interface CartListButtonProps {
   book: Book;
+  isCartIcon?: boolean;
 }
 
-export function AddToCartButton({ book }: CartListButtonProps) {
+export function AddToCartButton({
+  book,
+  isCartIcon = true,
+}: CartListButtonProps) {
   const { isCartListed, toggleCartItem } = useCart();
   const iscartListed = isCartListed(book.id);
   const isEbook = book.format?.toLowerCase() !== "livro";
@@ -23,33 +27,36 @@ export function AddToCartButton({ book }: CartListButtonProps) {
     }
   };
 
-  return (
-    // <Button
-    //   onClick={handletoggleCartList}
-    //   className={`hover:bg-primary/90 p-2 transition-all w-full ${
-    //     iscartListed ? "bg-destructive hover:bg-red-600" : ""
-    //   }`}
-    //   aria-label={
-    //     iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"
-    //   }
-    // >
-    //   <ShoppingCart
-    //     className={`
-    //       w-6 h-6
-    //       ${iscartListed ? "fill-white " : " hover:te"}
-    //     `}
-    //   />
-    //   {iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"}
-    // </Button>
+  if (isCartIcon) {
+    return (
+      <Button
+        onClick={handletoggleCartList}
+        variant={"outline"}
+        className="hover:text-none "
+      >
+        <ShoppingCart
+          className={`w-8 h-8 ${iscartListed ? "fill-primary " : "fill-white"}`}
+        />
+      </Button>
+    );
+  }
 
+  return (
     <Button
       onClick={handletoggleCartList}
-      variant={"outline"}
-      className="hover:text-none "
+      className={`border border-border p-2 transition-all w-full `}
+      aria-label={
+        iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"
+      }
+      variant={iscartListed ? "destructive" : "outline"}
     >
       <ShoppingCart
-        className={`w-8 h-8 ${iscartListed ? "fill-primary " : "fill-white"}`}
+        className={`
+            w-6 h-6
+            ${iscartListed ? "fill-white " : " hover:te"}
+          `}
       />
+      {iscartListed ? "Remover do carrinho" : "Adicionar ao carrinho"}
     </Button>
   );
 }
