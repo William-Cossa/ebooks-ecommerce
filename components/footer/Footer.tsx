@@ -4,17 +4,26 @@ import Link from "next/link";
 import Image from "next/image";
 import logoUnitec from "@/public/images/unitec-text-logo.png";
 import PaymentsMethods from "./PaymentsMethods";
+import { services } from "./links";
 const Footer: React.FC = () => {
   return (
     <footer className="border-t bg-primary flex items-center justify-center text-3xl text-secondary-foreground mt-auto h-80">
       <div className="container mx-auto px-4 py-10 md:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          <div className="flex flex-col gap-2 h-full">
+          <div className="flex flex-col gap-2 h-full justify-center">
             <Image alt="logos" width={105} src={logoUnitec} />
 
             <p className="mt-2 italic text-sm ">
               Conectando o Presente ao Futuro
             </p>
+            <div className="flex flex-col gap-3 text-sm">
+              {services.map((service, index) => (
+                <Link key={index} href={service.link} className="">
+                  {service.title}
+                </Link>
+              ))}
+            </div>
+
             <PaymentsMethods />
             <p className="text-sm mt-auto">
               © {new Date().getFullYear()} Unitec. Todos os direitos reservados.
