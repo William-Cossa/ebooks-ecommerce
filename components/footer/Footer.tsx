@@ -3,20 +3,20 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logoUnitec from "@/public/images/unitec-text-logo.png";
+import PaymentsMethods from "./PaymentsMethods";
 const Footer: React.FC = () => {
   return (
     <footer className="border-t bg-primary flex items-center justify-center text-3xl text-secondary-foreground mt-auto h-80">
       <div className="container mx-auto px-4 py-10 md:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          <div>
-            <div className="flex items-center space-x-2">
-              <Image alt="logos" width={105} src={logoUnitec} />
-            </div>
+          <div className="flex flex-col gap-2 h-full">
+            <Image alt="logos" width={105} src={logoUnitec} />
+
             <p className="mt-2 italic text-sm ">
               Conectando o Presente ao Futuro
             </p>
-
-            <p className="mt-2 text-sm text-muted-foreground">
+            <PaymentsMethods />
+            <p className="text-sm mt-auto">
               © {new Date().getFullYear()} Unitec. Todos os direitos reservados.
             </p>
           </div>
