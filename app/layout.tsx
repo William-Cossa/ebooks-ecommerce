@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Nunito, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer/Footer";
 import { CartProvider } from "@/contexts/CartContext";
 import { OrderProvider } from "@/contexts/OrderContext";
 import { Toaster as Sonner } from "@/components/ui/sonner";
