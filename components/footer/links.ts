@@ -4,7 +4,7 @@ export const services = [
     link: "https://unitec.ac.mz/cursos",
   },
   {
-    title: "Mentoria",
+    title: "Mentores",
     link: "https://unimentors.unitec.ac.mz/mentores",
   },
   {
@@ -17,12 +17,29 @@ export const socialMediaLinks = [
   {
     name: "Facebook",
     url: "https://www.facebook.com/unitec.bookss",
-    icon: "facebook-icon.svg",
+    icon: "/icons/facebook.png",
   },
   {
     name: "Instagram",
     url: "https://www.instagram.com/unitec.books/",
-    icon: "instagram-icon.svg",
+    icon: "/icons/instagram.png",
+  },
+  {
+    name: "Twitter - X",
+    url: "https://www.instagram.com/unitec.books/",
+    icon: "/icons/twitter-X.png",
+  },
+];
+
+export const phoneNumbers = [
+  {
+    number: "83 430 3184",
+  },
+  {
+    number: "84 011 1428",
+  },
+  {
+    number: "87 008 8688",
   },
 ];
 

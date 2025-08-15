@@ -6,7 +6,7 @@ import masterCardLogo from "@/public/images/payments/masterCardIcon.png";
 import emola from "@/public/images/payments/emola.png";
 function PaymentsMethods() {
   return (
-    <div className="flex gap-3 items-center">
+    <div className="flex gap-3 items-center ">
       <Image
         src={mpesaLogo}
         alt="Forma de pagamento Mpesa"

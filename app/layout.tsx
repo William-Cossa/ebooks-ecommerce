@@ -36,7 +36,7 @@ export default async function RootLayout({
     <html lang="en" className="ligth">
       <body
         // className={`flex flex-col bg-secondary w-scree ${nunito.className} ${montserrat.variable}`}
-        className={`flex flex-col min-h-screen  w-screen overflow-x-hidden`}
+        className={`flex flex-col min-h-screen w-screen overflow-x-hidden`}
       >
         <OrderProvider>
           <CartProvider>
