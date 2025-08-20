@@ -4,17 +4,20 @@ import Link from "next/link";
 import Image from "next/image";
 import logoUnitec from "@/public/images/unitec-text-logo.png";
 import PaymentsMethods from "./PaymentsMethods";
-import { phoneNumbers, services, socialMediaLinks } from "./links";
+import { phoneNumbers, quickLinks, services, socialMediaLinks } from "./links";
 import phone from "@/public/icons/phone.svg";
+import email from "@/public/icons/email.svg";
+import locationIcon from "@/public/icons/location2.png";
+import Container from "../Container";
+
 const Footer: React.FC = () => {
   return (
-    <footer className="border-t bg-primary flex items-center justify-center text-3xl text-secondary-foreground  lg:h-72">
-      <div className="container mx-auto  px-4 py-5 md:px-6">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
-          <div className="flex flex-col gap-4 h-full justify-center w-full">
+    <footer className="border-t bg-primary flex items-center justify-center text-sm text-secondary-foreground   lg:h-72">
+      <Container>
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4 ">
+          <div className="flex flex-col gap-4  justify-center w-full">
             <div>
-              <Image alt="logos" width={105} src={logoUnitec} />
-
+              <Image alt="logos" width={100} src={logoUnitec} />
               <p className="mt-1 italic text-sm ">
                 Conectando o Presente ao Futuro
               </p>
@@ -38,11 +41,10 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          <div>
-            <h3 className="font-medium text-sm">Contactos</h3>
-            <ul className="mt-3 text-sm space-y-2">
+          <div className="flex flex-col justify-center  ">
+            <ul className="mt-3 text-sm h-full flex flex-col  space-y-4">
               <li>
-                <ul className="flex gap-2 text-sm items-center">
+                <ul className="flex gap-2 text-xs items-center flex-wrap">
                   <Image src={phone} alt="phone icon" />
                   {phoneNumbers.map((phone, index) => (
                     <li key={index} className="flex items-center">
@@ -59,106 +61,75 @@ const Footer: React.FC = () => {
                   ))}
                 </ul>
               </li>
-              <div className="flex flex-col gap-2">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-2">
                 {socialMediaLinks.map((social, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <Image
-                      src={social.icon}
-                      alt={social.name}
-                      width={24}
-                      height={24}
-                    />
+                  <li key={index} className=" w-full">
                     <Link
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:underline underline-offset-4"
+                      className="hover:underline underline-offset-4 flex items-center gap-2 "
                     >
+                      <Image
+                        src={social.icon}
+                        alt={social.name}
+                        width={24}
+                        height={24}
+                        className="rounded-md"
+                      />
                       {social.name}
                     </Link>
                   </li>
                 ))}
               </div>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-medium text-sm">Gêneros Populares</h3>
-            <ul className="mt-3 space-y-2">
               <li>
                 <Link
-                  href="/books?genre=Fantasia"
-                  className="text-sm text-muted-foreground hover:text-blue-600"
+                  href="mailto:info@unitec.ac.mz"
+                  className="text-sm flex items-center gap-2"
                 >
-                  Fantasia
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/books?genre=Ficção%20Científica"
-                  className="text-sm text-muted-foreground hover:text-blue-600"
-                >
-                  Ficção Científica
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/books?genre=Aventura"
-                  className="text-sm text-muted-foreground hover:text-blue-600"
-                >
-                  Aventura
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/books?genre=Clássico"
-                  className="text-sm text-muted-foreground hover:text-blue-600"
-                >
-                  Clássicos
+                  <Image src={email} alt="email icon" />
+                  info@unitec.ac.mz
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-medium text-sm">Ajuda</h3>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-blue-600"
-                >
-                  Perguntas Frequentes
-                </a>
+          <div className="lg:ml-1">
+            <ul className="flex flex-col mt-3 gap-3">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    href={link.href}
+                    className="hover:underline underline-offset-4 text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+              <li className="flex items-center gap-2">
+                <Image
+                  src={locationIcon}
+                  alt="location icon"
+                  width={24}
+                  height={24}
+                />
+                Av. Salvador Allende Nº.60, Maputo
               </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-blue-600"
-                >
-                  Política de Privacidade
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-blue-600"
-                >
-                  Termos de Uso
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-blue-600"
-                >
-                  Contato
-                </a>
+              <li className="flex items-center gap-2 ">
+                <Image
+                  src={locationIcon}
+                  alt="location icon"
+                  width={24}
+                  height={24}
+                />
+                Av. Filipe Samuel Magaia Nº.552, Maputo
               </li>
             </ul>
           </div>
+
+          <div>PROMOCOES</div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

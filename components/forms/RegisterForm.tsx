@@ -165,14 +165,14 @@ export default function RegisterForm() {
               Eu aceito os{" "}
               <button
                 type="button"
-                className="text-accent hover:text-foreground font-medium transition-colors underline"
+                className=" hover:text-foreground font-medium transition-colors underline"
               >
                 Termos de Uso
               </button>{" "}
               e a{" "}
               <button
                 type="button"
-                className="text-accent hover:text-blue-800 font-medium transition-colors underline"
+                className=" hover:text-blue-800 font-medium transition-colors underline"
               >
                 Política de Privacidade
               </button>
@@ -197,7 +197,7 @@ export default function RegisterForm() {
         <div className="mt-4 text-center">
           <p className="text-gray-600 text-xs sm:text-sm">
             Já tem uma conta?{" "}
-            <button className="text-accent hover:text-foreground font-semibold transition-colors">
+            <button className=" underline underline-offset-4 font-semibold transition-colors">
               Faça login
             </button>
           </p>

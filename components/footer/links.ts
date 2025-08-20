@@ -19,15 +19,16 @@ export const socialMediaLinks = [
     url: "https://www.facebook.com/unitec.bookss",
     icon: "/icons/facebook.png",
   },
+
   {
     name: "Instagram",
     url: "https://www.instagram.com/unitec.books/",
     icon: "/icons/instagram.png",
   },
   {
-    name: "Twitter - X",
+    name: "Whatsapp",
     url: "https://www.instagram.com/unitec.books/",
-    icon: "/icons/twitter-X.png",
+    icon: "/icons/whatsapp.png",
   },
 ];
 
@@ -44,22 +45,8 @@ export const phoneNumbers = [
 ];
 
 export const quickLinks = [
-  {
-    title: "Gêneros",
-    links: [
-      { name: "Ficção Científica", href: "/books?genre=Ficção Científica" },
-      { name: "Romance", href: "/books?genre=Romance" },
-      { name: "Aventura", href: "/books?genre=Aventura" },
-      { name: "Clássicos", href: "/books?genre=Clássico" },
-    ],
-  },
-  {
-    title: "Ajuda",
-    links: [
-      { name: "Perguntas Frequentes", href: "#" },
-      { name: "Política de Privacidade", href: "#" },
-      { name: "Termos de Uso", href: "#" },
-      { name: "Contato", href: "#" },
-    ],
-  },
+  { name: "Cadastrar Livros", href: "https://unitec.co.mz" },
+  // { name: "Perguntas Frequentes", href: "#" },
+  // { name: "Política de Privacidade", href: "#" },
+  { name: "Termos de Uso", href: "#" },
 ];

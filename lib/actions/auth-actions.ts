@@ -65,7 +65,7 @@ export async function verifyOTP(email: string, otp: string) {
 
     console.log("Verificando OTP Login:", otp);
 
-    response = await axios.post(routes.verify_otp, { otp, email });
+    response = await axios.patch(routes.verify_otp, { otp, email });
 
     if (response.status === 200) {
       const token = response.data.token;
@@ -155,6 +155,7 @@ export async function login(value: string, password: string) {
 export async function resend_OTP(email: string) {
   try {
     const response = await axios.post(routes.resend_otp, { email });
+
     return { data: response.data, status: response.status };
   } catch (error) {
     if (axios.isAxiosError(error)) {

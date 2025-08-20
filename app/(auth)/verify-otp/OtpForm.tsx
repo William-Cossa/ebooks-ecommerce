@@ -36,31 +36,6 @@ function OtpForm() {
   };
 
   const handleVerify = async () => {
-    if (otp.length !== 6) {
-      setError("Por favor, digite o código completo");
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-
-    try {
-      const response = await verifyOTP(email, otp);
-
-      if (response.status === 200) {
-        setVerified(true);
-      } else {
-        setError("Código incorreto. Tente novamente!");
-        setOtp("");
-      }
-    } catch (error) {
-      setError("Erro ao verificar código. Tente novamente!");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleVerify2 = async () => {
     setLoading(true);
 
     if (otp.length === 6) {
@@ -72,6 +47,7 @@ function OtpForm() {
           router.push("/");
         } else if (response?.status === 204) {
           toast.success("OTP verificado com sucesso ");
+          router.push("/login");
         } else {
           toast.error("Código incorreto. Tente novamente!");
         }
@@ -86,9 +62,9 @@ function OtpForm() {
     }
   };
 
-  const handleReenviar = async () => {
+  const resendOTP = async () => {
     console.log("Reenviando OTP para:", email);
-    setLoading(true);
+    setResendLoading(true);
 
     try {
       const response = await resend_OTP(email);
@@ -100,41 +76,14 @@ function OtpForm() {
         response?.status === 250
       ) {
         toast.success("OTP reenviado com sucesso!");
+        setCountdown(60);
+        setOtp("");
       } else {
         toast.error("Erro ao reenviar OTP. Tente novamente!");
       }
     } catch (error) {
       toast.error("Erro ao reenviar OTP. Tente novamente!");
       console.error("Erro ao reenviar OTP:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  const verifyOTP = async (email: string, otp: string) => {
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    return { status: otp === "123456" ? 200 : 400 };
-  };
-
-  const resendOTP = async (email: string) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    return { status: 200 };
-  };
-
-  const handleResend = async () => {
-    setResendLoading(true);
-    setError("");
-
-    try {
-      const response = await resendOTP(email);
-
-      if (response.status === 200) {
-        setCountdown(60);
-        setOtp("");
-      } else {
-        setError("Erro ao reenviar código. Tente novamente!");
-      }
-    } catch (error) {
-      setError("Erro ao reenviar código. Tente novamente!");
     } finally {
       setResendLoading(false);
     }
@@ -203,8 +152,10 @@ function OtpForm() {
             Reenviar em {countdown} segundos
           </p>
         ) : (
-          <button
-            onClick={handleResend}
+          <Button
+            type="button"
+            variant={"ghost"}
+            onClick={resendOTP}
             disabled={resendLoading}
             className="text-blue-600 hover:text-blue-700 font-medium transition-colors disabled:opacity-50 text-xs sm:text-sm"
           >
@@ -216,7 +167,7 @@ function OtpForm() {
             ) : (
               "Reenviar código"
             )}
-          </button>
+          </Button>
         )}
       </div>
     </form>

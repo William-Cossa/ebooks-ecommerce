@@ -66,9 +66,10 @@ export async function efectuarPagamento(
       body: JSON.stringify(paymentData),
     });
 
+    console.log("Response status:", response.status);
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Erro ao processar pagamento");
+      throw new Error(errorData.message || "Erro ao processar pagamento!!!");
     }
 
     const result = await response.json();

@@ -3,7 +3,7 @@ import Logo from "@/components/navbar/Logo";
 
 export default async function RegisterPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center p-2 sm:p-4 bg-bubbles">
+    <main className="min-h-screen flex items-center justify-center p-2 sm:p-4 ">
       <section className="hidden lg:flex 2xl:h-[700px] h-[500px] max-h-[800px] w-full 2xl:max-w-6xl max-w-[950px] rounded-2xl overflow-hidden lg:-mt-10 items-center justify-center shadow-2xl backdrop-blur-sm">
         <div className="w-full  h-full">
           <div className="gradient-primary h-full w-full flex items-center justify-center px-8 py-8 text-center relative overflow-hidden">
@@ -22,10 +22,10 @@ export default async function RegisterPage() {
                 Transforme sua experiência de leitura
               </p>
 
-              <div className="space-y-3 text-accent-foreground/75">
+              <div className="space-y-3 text-blue-100">
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 gradient-secondary rounded-full flex-shrink-0"></div>
-                  <span className="text-sm">
+                  <div className="w-2 h-2 gradient-secondary rounded-full  flex-shrink-0"></div>
+                  <span className="text-sm ">
                     Sua jornada literária começa aqui
                   </span>
                 </div>

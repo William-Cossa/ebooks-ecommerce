@@ -182,7 +182,7 @@ export default function BooksFilters({
                 <Input
                   placeholder="Buscar gênero..."
                   onChange={(e) => debouncedGenreSearch(e.target.value)}
-                  className="mb-2 h-8 "
+                  className="mb-2 h-8 mt-2 "
                   disabled={isPending}
                 />
                 <ScrollArea className="h-[calc(100vh-360px)]  pr-2 space-y-2  ">

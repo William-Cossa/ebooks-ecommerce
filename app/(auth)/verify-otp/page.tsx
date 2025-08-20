@@ -25,9 +25,9 @@ export default function VerifyOTP({ searchParams }: VerifyOTPProps) {
             <p className="text-gray-600 text-xs sm:text-sm mb-2">
               Digite o código de 6 dígitos que enviamos para
             </p>
-            <div className="flex items-center justify-center gap-2 mt-2">
-              <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
-              <span className="text-blue-600 font-medium text-xs sm:text-sm break-all">
+            <div className="flex items-center justify-center gap-2 mt-2 text-secondary">
+              <Mail className="w-3 h-3 sm:w-4 sm:h-4 " />
+              <span className="font-medium text-xs sm:text-sm break-all">
                 {email}
               </span>
             </div>
