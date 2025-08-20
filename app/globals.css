@@ -14,18 +14,17 @@ h2 {
 @layer base {
   :root {
     --background: 240 100.0000% 99.0196%;
-    --foreground: 226.5065 58.7367% 21.1477%;
-    --card: 180 6.6667% 97.0588%;
+    --foreground: 210 25% 7.8431%;
+    --card: 210.0027 34.5467% 98.0043%;
     --card-foreground: 210 25% 7.8431%;
     --popover: 0 0% 100%;
     --popover-foreground: 210 25% 7.8431%;
     --primary: 236.2162 94.8718% 22.9412%;
-    /* 210 100% 38.0392% */
     --primary-foreground: 0 0% 100%;
     --secondary: 210 100% 38.0392%;
     --secondary-foreground: 0 0% 100%;
     --muted: 240 1.9608% 90%;
-    --muted-foreground: 215.3832 18.3663% 47.0286%;
+    --muted-foreground: 210 25% 7.8431%;
     --accent: 211.5789 51.3514% 92.7451%;
     --accent-foreground: 203.8863 88.2845% 53.1373%;
     --destructive: 356.3033 90.5579% 54.3137%;
@@ -61,15 +60,15 @@ h2 {
     --tracking-normal: 0em;
     --spacing: 0.25rem;
   }
-
+  
   .dark {
     --background: 228.8200 85.1316% 4.9967%;
     --foreground: 200 6.6667% 91.1765%;
-    --card: 210.0027 34.5467% 98.0043%;
+    --card: 222.3362 49.3900% 11.2990%;
     --card-foreground: 0 0% 85.0980%;
     --popover: 0 0% 0%;
     --popover-foreground: 200 6.6667% 91.1765%;
-    --primary: 203.7736 87.6033% 52.5490%;
+    --primary: 203.7736 87.6033% 52.5490%; 
     --primary-foreground: 0 0% 100%;
     --secondary: 195.0000 15.3846% 94.9020%;
     --secondary-foreground: 217.2810 36.0732% 17.5400%;
@@ -138,7 +137,7 @@ h2 {
 .card {
   padding: 2em;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.8);
+  /* background: rgba(255, 255, 255, 0.8); */
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }

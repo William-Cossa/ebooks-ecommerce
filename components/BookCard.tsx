@@ -26,7 +26,7 @@ const BookCard = async ({ book }: BookCardProps) => {
             className="w-full h-full object-cover transition-transform hover:scale-105"
           />
         </div>
-        <div className="p-3 flex flex-col flex-grow">
+        <div className="p-3 flex flex-col flex-grow bg-card">
           <div className="flex items-center text-yellow-500 mb-1.5">
             <Star className="w-3.5 h-3.5 fill-current" />
             <span className="ml-1 text-xs">{book.rating.toFixed(1)}</span>
