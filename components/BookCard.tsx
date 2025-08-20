@@ -1,27 +1,46 @@
 import React from "react";
-
-import { Star, ShoppingCart, Check } from "lucide-react";
+import { Star } from "lucide-react";
 import { Book } from "@/types/types";
 import Link from "next/link";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { AddToCartButton } from "./AddToCartButton";
-import { Button } from "./ui/button";
 import { BuyButton } from "./BuyButton";
+import imagePlaceholder from "@/public/img-placeholder.png";
 
 interface BookCardProps {
   book: Book;
 }
 
+// Função server-side para verificar se a URL existe
+async function checkImageExists(url: string): Promise<boolean> {
+  try {
+    const res = await fetch(url, { method: "HEAD", cache: "no-store" });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 const BookCard = async ({ book }: BookCardProps) => {
   const hasDiscount = book.discountPercentage > 0;
+
+  let coverUrl: string | StaticImageData = imagePlaceholder;
+
+  if (book?.cover?.url && book.cover.url.startsWith("http")) {
+    const exists = await checkImageExists(book.cover.url);
+    if (exists) {
+      coverUrl = book.cover.url;
+    }
+  }
+
   return (
     <div className="book-card flex flex-col h-full rounded-lg overflow-hidden border border-border bg-card shadow-sm hover:shadow-md transition-shadow pb-1">
-      <Link href={`/book/${book.id}`} className="flex-grow">
-        <div className="aspect-[1/1.2] w-full overflow-hidden bg-muted">
+      <Link key={book.id} href={`/book/${book.id}`} className="flex-grow">
+        <div className="aspect-[1/1.2] w-full overflow-hidden bg-secondary-foreground ">
           <Image
             width={620}
             height={620}
-            src={book.cover?.url}
+            src={coverUrl}
             alt={`Capa de ${book.title}`}
             className="w-full h-full object-cover transition-transform hover:scale-105"
           />

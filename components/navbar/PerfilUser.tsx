@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LogoutButton } from "../LogoutButton";
+import { LogOut } from "lucide-react";
 
 interface props {
   user: any;
@@ -77,7 +78,7 @@ export default function PerfilUser({ user }: props) {
     <div className="relative">
       <div
         onClick={handleToggleDropdown}
-        className="cursor-pointer text-primary bg-border p-0.5 py-0  rounded-full flex gap-3 items-center"
+        className="cursor-pointer font-semibold text-sm bg-border p-0.5 py-0  rounded-full flex gap-3 items-center"
       >
         {/* <span className="text-sm pl-3 hidden md:block">Meu Perfil</span> */}
         <Avatar className="h-4/5 aspect-square">
@@ -89,32 +90,35 @@ export default function PerfilUser({ user }: props) {
       {dropdownOpen && (
         <div
           ref={dropdownRef}
-          className="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-50"
+          className="absolute right-0 mt-2 w-32 bg-background rounded-md shadow-lg z-50"
         >
           <ul className="py-2">
-            <li>
+            {/* <li>
               <Link
                 href="/user/perfil"
-                className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
+                className="block px-4 py-2 text-xs  hover:bg-gray-100"
                 onClick={() => setDropdownOpen(false)}
               >
                 Meu Perfil
               </Link>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link
-                href="/user/cursos"
+                href=""
                 className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
                 onClick={() => setDropdownOpen(false)}
               >
                 Meus Cursos
               </Link>
-            </li>
+            </li> */}
             <li>
               <LogoutButton data-action="logout">
-                <span className="cursor-pointer block w-full text-left px-4 py-2 text-xs text-gray-700 hover:bg-gray-100">
-                  Sair
-                </span>
+                <div className=" flex items-center justify-between  hover:bg-gray-100 w-full px-4">
+                  <LogOut />
+                  <span className="cursor-pointer block w-full text-left px-4 py-2 text-xs">
+                    Sair
+                  </span>
+                </div>
               </LogoutButton>
             </li>
           </ul>

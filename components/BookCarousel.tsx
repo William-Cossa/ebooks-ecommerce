@@ -26,7 +26,10 @@ const BookCarousel: React.FC<BookCarouselProps> = ({ title, books }) => {
         className="carousel flex overflow-x-auto space-x-4 pb-4 -mx-4 px-4 snap-x scroll-smooth"
       >
         {books?.map((book) => (
-          <div className="flex-none w-[280px] snap-start">
+          <div
+            key={Math.random() * Math.random()}
+            className="flex-none w-[280px] snap-start"
+          >
             <BookCard key={book.id} book={book} />
           </div>
         ))}

@@ -25,8 +25,8 @@ function Navbar({ user }: NavbarProps) {
         <div className="flex h-16 items-center justify-between w-full px-2 md:px-4">
           <Logo />
           <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
-            {navLinks.map((link) => (
-              <NavItem key={link.href} href={link.href} label={link.label} />
+            {navLinks.map((link, index) => (
+              <NavItem key={index} href={link.href} label={link.label} />
             ))}
           </nav>
 

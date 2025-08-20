@@ -86,7 +86,7 @@ export default async function page({ params }: paramsProps) {
 
                   return authors.length > 0 ? (
                     authors.map((author, index) => (
-                      <div key={author}>
+                      <div key={index}>
                         <Link
                           href={`/books?search=${encodeURIComponent(author)}`}
                           className="dark:text-muted-foreground font-semibold hover:underline"

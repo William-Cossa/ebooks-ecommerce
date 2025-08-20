@@ -33,11 +33,8 @@ export default async function RootLayout({
 }>) {
   const user = await getUser();
   return (
-    <html lang="en" className="dark">
-      <body
-        // className={`flex flex-col bg-secondary w-scree ${nunito.className} ${montserrat.variable}`}
-        className={`flex flex-col min-h-screen w-screen overflow-x-hidden`}
-      >
+    <html lang="en" className="light">
+      <body className={`flex flex-col min-h-screen w-screen overflow-x-hidden`}>
         <OrderProvider>
           <CartProvider>
             <Navbar user={user} />
