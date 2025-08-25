@@ -12,7 +12,7 @@ import Container from "../Container";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="border-t bg-primary flex items-center justify-center text-sm text-secondary-foreground   lg:h-72">
+    <footer className="mt-10 border-t bg-primary flex items-center justify-center text-sm text-secondary-foreground   lg:h-72">
       <Container>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4 ">
           <div className="flex flex-col gap-4  justify-center w-full">

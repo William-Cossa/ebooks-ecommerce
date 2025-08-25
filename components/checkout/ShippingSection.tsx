@@ -21,7 +21,8 @@ export const ShippingSection = ({
       try {
         setIsLoading(true);
         const { deliviryFees } = await getAllDeliveries();
-        setShippingOptions(deliviryFees!);
+        const dummyData = [{ id: "12456", province: "Maputo", price: "100" }];
+        setShippingOptions(dummyData);
       } catch (error) {
         console.error("Erro ao carregar opções de frete:", error);
       } finally {
@@ -56,6 +57,7 @@ export const ShippingSection = ({
         // value={selectedShipping || ""}
         onValueChange={(value) => onShippingSelect(value)}
         className="space-y-0 gap-0"
+        // defaultValue={shippingOptions[0]?.id}
         defaultValue={shippingOptions[0]?.id}
       >
         {shippingOptions.map((option) => (

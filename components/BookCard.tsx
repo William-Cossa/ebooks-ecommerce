@@ -14,7 +14,7 @@ interface BookCardProps {
 // Função server-side para verificar se a URL existe
 async function checkImageExists(url: string): Promise<boolean> {
   try {
-    const res = await fetch(url, { method: "HEAD", cache: "no-store" });
+    const res = await fetch(url, { method: "HEAD", cache: "force-cache" });
     return res.ok;
   } catch {
     return false;
@@ -28,7 +28,8 @@ const BookCard = async ({ book }: BookCardProps) => {
 
   if (book?.cover?.url && book.cover.url.startsWith("http")) {
     const exists = await checkImageExists(book.cover.url);
-    if (exists) {
+    // if (exists) {
+    if (true) {
       coverUrl = book.cover.url;
     }
   }
@@ -43,6 +44,8 @@ const BookCard = async ({ book }: BookCardProps) => {
             src={coverUrl}
             alt={`Capa de ${book.title}`}
             className="w-full h-full object-cover transition-transform hover:scale-105"
+            placeholder="blur"
+            blurDataURL="/img-placeholder.png"
           />
         </div>
         <div className="p-3 flex flex-col flex-grow bg-card">

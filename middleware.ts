@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
 
   if (
     (pathname.startsWith("/checkout") || pathname.startsWith("/user")) &&
-    session
+    !session
   ) {
     const loginUrl = new URL("/login", req.url);
     loginUrl.searchParams.set("redirect", pathname + req.nextUrl.search);
@@ -25,5 +25,5 @@ export async function middleware(req: NextRequest) {
 
 // Configuração do middleware
 export const config = {
-  matcher: ["/checkout/:path*", "/user/:path*", "/login"],
+  matcher: ["/checkout/:path*", "/user/:path*", "/login", "/verify-otp"],
 };

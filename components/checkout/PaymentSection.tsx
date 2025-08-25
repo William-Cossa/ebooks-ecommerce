@@ -61,7 +61,7 @@ export const PaymentSection = ({
             value={paymentMethod}
             onValueChange={handleTabChange}
           >
-            <TabsList className="grid w-full grid-cols-2">
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="M-pesa" className="flex items-center gap-2">
                 <Smartphone className="h-4 w-4" />
                 M-Pesa
@@ -70,10 +70,17 @@ export const PaymentSection = ({
                 <CreditCard className="h-4 w-4" />
                 Cartão
               </TabsTrigger>
+              <TabsTrigger
+                value="transferencia"
+                className="flex items-center gap-2"
+              >
+                <CreditCard className="h-4 w-4" />
+                Tranferência
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="M-pesa" className="space-y-4">
-              <div className="p-4  rounded-lg border border-green-200">
+              <div className="p-4  rounded-lg border ">
                 <div className="flex items-center gap-2 mb-2">
                   <Smartphone className="h-5 w-5 " />
                   <h4 className="font-">Pagamento via M-Pesa</h4>
@@ -86,7 +93,7 @@ export const PaymentSection = ({
               <div className="space-y-2">
                 <Label htmlFor="mpesa-phone">Número M-Pesa *</Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 " />
                   <Input
                     id="mpesa-phone"
                     type="tel"
@@ -134,6 +141,9 @@ export const PaymentSection = ({
                   Número associado ao seu cartão
                 </p>
               </div>
+            </TabsContent>
+            <TabsContent value="transferencia" className="space-y-4">
+              <div className="text-center">TRANSFERÊNCIA</div>
             </TabsContent>
           </Tabs>
 

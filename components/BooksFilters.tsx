@@ -185,7 +185,7 @@ export default function BooksFilters({
                   className="mb-2 h-8 mt-2 "
                   disabled={isPending}
                 />
-                <ScrollArea className="h-[calc(100vh-360px)]  pr-2 space-y-2  ">
+                <ScrollArea className="h-[calc(100vh-360px)] border border-border/20 px-1 rounded-lg pr-2 space-y-2  ">
                   {filteredGenres.length > 0 ? (
                     filteredGenres.map((genre, index) => (
                       <div
