@@ -6,6 +6,7 @@ import Image, { StaticImageData } from "next/image";
 import { AddToCartButton } from "./AddToCartButton";
 import { BuyButton } from "./BuyButton";
 import imagePlaceholder from "@/public/img-placeholder.png";
+import CustomImage from "./CustomImage";
 
 interface BookCardProps {
   book: Book;
@@ -38,7 +39,7 @@ const BookCard = async ({ book }: BookCardProps) => {
     <div className="book-card flex flex-col h-full rounded-lg overflow-hidden border border-border bg-card shadow-sm hover:shadow-md transition-shadow pb-1">
       <Link key={book.id} href={`/book/${book.id}`} className="flex-grow">
         <div className="aspect-[1/1.2] w-full overflow-hidden bg-secondary-foreground ">
-          <Image
+          {/* <Image
             width={620}
             height={620}
             src={coverUrl}
@@ -46,7 +47,8 @@ const BookCard = async ({ book }: BookCardProps) => {
             className="w-full h-full object-cover transition-transform hover:scale-105"
             placeholder="blur"
             blurDataURL="/img-placeholder.png"
-          />
+          /> */}
+          <CustomImage src={coverUrl} alt={`Capa de ${book.title}`} />
         </div>
         <div className="p-3 flex flex-col flex-grow bg-card">
           <div className="flex items-center text-yellow-500 mb-1.5">

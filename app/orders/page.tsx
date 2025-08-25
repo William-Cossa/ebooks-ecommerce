@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag, Calendar, Package } from "lucide-react";
 import Container from "@/components/Container";
 import Link from "next/link";
+import Image from "next/image";
 
 const OrdersPage: React.FC = () => {
   const { orders } = useOrders();
@@ -106,10 +107,10 @@ const OrdersPage: React.FC = () => {
                     {order.items.map((item, index) => (
                       <div
                         key={index}
-                        className="flex items-center space-x-3 p-2 bg-gray-50 rounded-lg"
+                        className="flex items-center space-x-3 p-2  rounded-lg"
                       >
-                        <img
-                          src={item.book.coverImage}
+                        <Image
+                          src={item.book.cover.url}
                           alt={item.book.title}
                           className="w-12 h-16 object-cover rounded"
                         />
@@ -117,7 +118,7 @@ const OrdersPage: React.FC = () => {
                           <p className="font-medium text-sm">
                             {item.book.title}
                           </p>
-                          <p className="text-xs text-gray-600">
+                          <p className="text-xs">
                             {item.book.author.join(", ")}
                           </p>
                           <p className="text-xs text-blue-600">
